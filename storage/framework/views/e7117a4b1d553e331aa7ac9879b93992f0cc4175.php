@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Seller Login | <?php echo e($generalsetting->name); ?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="<?php echo e(asset($generalsetting->favicon)); ?>">
+        <!-- Bootstrap css -->
+        <link href="<?php echo e(asset('public/backEnd/')); ?>/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <!-- App css -->
+        <link href="<?php echo e(asset('public/backEnd/')); ?>/assets/css/app.min.css" rel="stylesheet" id="app-style"/>
+        <!-- icons -->
+        <link href="<?php echo e(asset('public/backEnd/')); ?>/assets/css/icons.min.css" rel="stylesheet" />
+        <!-- toastr js -->
+        <link rel="stylesheet" href="<?php echo e(asset('public/backEnd/')); ?>/assets/css/toastr.min.css">
+        <!-- Head js -->
+        <script src="<?php echo e(asset('public/backEnd/')); ?>/assets/js/head.js"></script>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Header Styles */
+.header {
+    background-color: #e8f0fe;
+    padding: 20px;
+    color: #111184;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list a {
+    color: #ffffff;
+    text-decoration: none;
+    background: #111184;
+    padding: 8px 10px;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+.nav-list a:hover {
+  text-decoration: underline;
+}
+
+.login-section {
+    background-color: #e4e4e4;
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.login-content {
+    max-width: 490px;
+    background: #111184;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #fff;
+}
+
+.login-content h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.login-content p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-form input {
+    padding: 11px 10px;
+    font-size: 1rem;
+    border: none !important;
+    border-radius: 5px;
+    width: 100%;
+    outline: 0;
+}
+.login-form input.input__pass{
+    width: 89%;
+}
+.parsley-errors-list>li {
+    list-style: none;
+    color: #ffffff !important;
+    margin-top: -13px !important;
+    padding-left: 20px;
+    position: relative;
+}
+.login-form button {
+  background-color: #ffffff;
+  color: #111184;
+  padding: 11px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+  background-color: #ffe2d1;
+}
+
+.form-links {
+  font-size: 0.9rem;
+}
+
+.form-links a {
+  color: white;
+  text-decoration: underline;
+  margin: 0 5px;
+}
+
+.form-links a:hover {
+  color: #ffe2d1;
+}
+/* Why Sell on Flexzzy Section */
+.why-sell-section {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #ffffff;
+  color: #333;
+}
+
+.why-sell-section h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.features-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-box {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+}
+
+.feature-box h3 {
+  font-size: 1.25rem;
+  color: #111184;
+  margin-bottom: 10px;
+}
+
+.feature-box p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* Testimonials Section */
+.testimonials-section {
+  background-color: #f9f9f9;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.testimonials-section h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.testimonial-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.testimonial {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  object-fit: cover;
+}
+
+.testimonial h3 {
+  font-size: 1.25rem;
+  color: #111184;
+  margin-bottom: 10px;
+}
+
+.testimonial p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.video-link a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.testimonial:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+/* Steps Section */
+.steps-section {
+  background-color: #fff;
+  padding: 50px 0px;
+  text-align: center;
+}
+
+.steps-section h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.step {
+  background-color: #fffbf3;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.step h3 {
+  font-size: 1.25rem;
+  color: #111184;
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.download-app p {
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+}
+
+.app-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.app-links img {
+  width: 150px;
+  height: auto;
+}
+/* FAQ Section */
+.faq-section {
+  background-color: #f8f8f8;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.faq-section h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item h3 {
+  font-size: 1.25rem;
+  color: #111184;
+  margin-bottom: 15px;
+}
+
+.faq-item p {
+  font-size: 1rem;
+  color: #555;
+}
+/* Call to Action Section */
+.cta-section {
+  background-color: #111184;
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.cta-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.cta-container p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  background-color: #ffffff;
+  color: #111184;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #f4f4f4;
+}
+.login-content img {
+    height: 50px;
+}
+section.join__sellers {
+    padding: 30px 0;
+}
+.parsley-errors-list {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    color: yellow;
+}
+
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      Flexzzy Seller Center
+    </div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="<?php echo e(route('home')); ?>">Go To Home</a></li>
+      </ul>
+    </nav>
+  </header>
+<section class="login-section" id="particles-js">
+  <div class="login-content">
+    <img src="<?php echo e(asset('public/frontEnd/images/main-logo.png')); ?>" alt="">
+    <h1>Become A Flexzzy Seller Today!</h1>
+    <p>Create a Flexzzy seller account now and reach millions of customers!</p>
+    <form action="<?php echo e(route('seller.signin')); ?>" method="POST" data-parsley-validate="" class="login-form">
+        <?php echo csrf_field(); ?>
+    <div class="form-group mb-0">
+        <div class="input-group input-group-merge">
+           <input type="text" placeholder="Email or Mobile Number" required name="phone" class=" <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="phone" value="<?php echo e(old('phone')); ?>">
+        </div>
+       <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+            <span class="invalid-feedback" role="alert">
+                <strong><?php echo e($message); ?></strong>
+            </span>
+        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+    </div>
+  <div class="form-group mb-0">
+    <div class="input-group input-group-merge">
+      <input type="password" placeholder="Password" required class="input__pass" name="password" id="password" value="<?php echo e(old('password')); ?>">
+          <div class="input-group-text" data-password="false">
+              <span class="password-eye"></span>
+          </div>
+      </div>
+        <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+            <span class="invalid-feedback" role="alert">
+                <strong><?php echo e($message); ?></strong>
+            </span>
+        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+    </div>
+      <button type="submit">Login</button>
+      <div class="form-links">
+        <a href="<?php echo e(route('seller.forgot.password')); ?>">Reset password</a> |
+        <a href="<?php echo e(route('seller.register')); ?>">Create a new account</a>
+       
+      </div>
+    </form>
+  </div>
+</section>
+ <section class="join__sellers">
+   <div class="features-container">
+     <div class="data_join_seller">
+        <h3>Join the Flexzzy Seller Community</h3>
+        <p class="mb-3">
+          Welcome to Flexzzy, your premier platform for swift and seamless online shopping. . We’re excited to invite you to join our growing seller community, where you can expand your reach, connect with a vibrant customer base, and elevate your sales to new heights.
+        </p>
+        <h3 class="mt-3">How to Get Started</h3>
+        <p class="mb-3">
+          1. Register as a Seller: Complete the registration process by submitting your business details and agreeing to our terms and conditions.<br>
+          2. List Your Products: Upload high-resolution images and comprehensive product descriptions to showcase your items effectively.<br>
+          3. Start Selling: Once your products are live, customers can seamlessly browse and purchase directly through our platform.<br>
+          4. Receive Payments: Enjoy secure, timely payments through our reliable and efficient payment processing system.
+          </p>
+          <h3 class="mt-3">Required Documents</h3>
+          <p class="mb-3">
+            To facilitate a seamless registration process, kindly have the following documents prepared:<br class="2">
+            ● National ID Card (NID)<br>
+            ● Recent Photograph<br>
+            ● Bikash Number<br>
+
+            </p>
+            <h3 class="mt-3">Support and Contact Information</h3>
+            <p class="mb-3">
+              Our dedicated Vendor Support team is available to assist with any inquiries or concerns you may have.<br>
+              ● Email: vendorsupport@flexzzy.com<br>
+              ● Phone: +8801704468946<br>
+              Join Flexzzy today and elevate your business to new heights by reaching customers nationwide.
+
+            </p>
+     </div>
+   </div>
+ </section>
+<section class="why-sell-section">
+  <h2>Why Sell on Flexzzy?</h2>
+  <div class="features-container">
+    <div class="feature-box">
+      <img src="icons/reach.png" alt="Reach Icon">
+      <h3>Extensive Customer Base</h3>
+      <p>Gain access to a wide audience actively seeking quality products across various categories.</p>
+    </div>
+    <div class="feature-box">
+      <img src="icons/free-registration.png" alt="Free Registration Icon">
+      <h3>User-Friendly Platform</h3>
+      <p>Our intuitive interface makes it easy to list your products, manage inventory, and process orders efficiently.</p>
+    </div>
+    <div class="feature-box">
+      <img src="icons/reliable-shipping.png" alt="Reliable Shipping Icon">
+      <h3>Secure Transactions</h3>
+      <p>We prioritize the safety of our sellers and buyers by ensuring secure payment gateways and protecting your business interests.</p>
+    </div>
+    <div class="feature-box">
+      <img src="icons/timely-payments.png" alt="Timely Payments Icon">
+      <h3>Dedicated Support</h3>
+      <p>Our vendor support team is available to assist you at every step, ensuring a seamless selling experience.</p>
+    </div>
+  </div>
+</section>
+<!-- =================== -->
+<section class="join__sellers">
+   <div class="features-container">
+     <div class="data_join_seller">
+        <h2>Join the Flexzzy Seller Program</h2>
+        <p class="mb-3">
+         Welcome to <b>Flexzzy</b>, the ultimate multi-vendor eCommerce platform where entrepreneurs like you can showcase your products, connect with customers, and accelerate your business growth. Our seller-friendly marketplace provides the tools, support, and resources you need to thrive in today’s competitive online market.
+        </p>
+        <h3 class="mt-3">Why Sell on Flexzzy?</h3>
+        <p class="mb-3">
+          1.  <b>Expand Your Reach</b>
+          Access a wide, diverse customer base actively seeking quality products across various categories.<br>
+          2.  <b>Effortless Selling Tools</b>
+          From product listings to order management, our intuitive dashboard streamlines your selling experience, saving you time and effort.<br>
+          3.  <b>Low Commission Fees</b>
+          Retain more of your earnings with our competitive, transparent fee structure designed to help you grow your profits.<br>
+          4.  <b>Secure Transactions</b>
+          Rest easy with our secure payment gateway, ensuring timely and safe transactions for both sellers and buyers.<br>
+          5.  <b>24/7 Dedicated Support</b>
+          Our expert support team is available around the clock to assist with optimizing and growing your business on Flexzzy.
+
+        </p>
+     </div>
+   </div>
+ </section>
+<!-- =================== -->
+<section class="steps-section">
+  <h2>How It Works</h2>
+  <div class="features-container">
+    <div class="step">
+      <img src="images/signup-icon.png" alt="Sign Up">
+      <h3>Register Your Seller Account</h3>
+      <p>Easily create your seller account on Flexzzy in just a few simple steps and start your journey today</p>
+    </div>
+
+    <div class="step">
+      <img src="images/profile-icon.png" alt="Profile Information">
+      <h3>Set up Your Store </h3>
+      <p>Customize your storefront, upload product listings, and begin showcasing your offerings to a wide customer base.</p>
+    </div>
+
+    <div class="step">
+      <img src="images/address-icon.png" alt="Address Information">
+      <h3>Start Selling</h3>
+      <p>Receive orders, process them efficiently, and watch your sales grow with our streamlined system, designed for success.</p>
+    </div>
+
+    <div class="step">
+      <img src="images/id-bank-icon.png" alt="ID & Bank Information">
+      <h3>Get Paid</h3>
+      <p>Receive secure, on-time payments directly to your bank account—every time, with guaranteed reliability.</p>
+    </div>
+
+  </div>
+</section>
+<section class="join__sellers">
+   <div class="features-container">
+     <div class="data_join_seller">
+        <h2>What You Can Sell on Flexzzy</h2>
+        <p class="mb-3">
+         From fashion and electronics to artisanal crafts and beyond, Flexzzy empowers you to showcase a diverse array of products. With category-specific tools and advanced features, you can enhance product visibility and effectively target your ideal audience.
+        </p>
+        <h3 class="mt-3">Seller Benefits</h3>
+        <p class="mb-3">
+          ● Customizable Storefront: Build your brand with a unique and professional online store.<br>
+          ● Marketing & Promotion: Leverage our platform’s promotional tools to attract more buyers.<br>
+          ● Detailed Analytics: Gain insights into your sales, customer behavior, and performance metrics.<br>
+          ● Logistics Support: Access partnerships with reliable shipping providers to ensure smooth deliveries.
+
+        </p>
+        <h3 class="mt-3">Join the Community of Successful Sellers</h3>
+        <p class="mb-3">
+         Flexzzy is more than a marketplace—it’s a thriving community of entrepreneurs and innovators. Whether you're just starting or an established business, we offer the resources and exposure you need to grow.
+        </p>
+
+        <h3 class="mt-3">Ready to Get Started?</h3>
+        <p class="mb-3">
+        Take the first step toward building a successful online business. Click the button below to register as a seller on Flexzzy today!
+        </p>
+        <h4 class="mt-3">Become a Seller Now</h4>
+        <h4 class="mt-1">For inquiries or support, contact us at support@flexzzy.com. We’re here to help you succeed!</h4>
+       
+     </div>
+   </div>
+ </section>
+<section class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-container">
+    <div class="faq-item">
+      <h3>How Can I Sell On Flexzzy?</h3>
+      <p>To start selling on Flexzzy, visit the Flexzzy Seller Center and create a new account using your phone number. Complete the sign-up process by verifying your email, adding your pickup address, and uploading the required documents for verification. Once your store is approved, you can start listing your products!</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What Categories Can I Sell on Flexzzy?</h3>
+      <p>With multiple categories on Flexzzy—ranging from fashion, lifestyle, digital goods, FMCG, and lifestyle—you’ll find the perfect fit for your products. However, it’s essential to avoid listing counterfeits, dangerous, or prohibited items as per our cultural norms.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How Much Commission Does Flexzzy Charge?</h3>
+      <p>Opening a shop on Flexzzy is free! However, a small commission is deducted from each order’s payment, with rates varying based on the product category. You can find more details about commissions in different categories here.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What is the Payment Policy of Flexzzy?</h3>
+      <p>Seller payments are based on orders marked as “Delivered” to the customer in the Seller Center. Payments for delivered products are settled weekly. In case public holidays or weekends fall upon these dates, the payment date will be released on the upcoming business day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =================== -->
+<section class="cta-section">
+  <div class="cta-container">
+    <h2>Ready to Start Selling on Flexzzy?</h2>
+    <p>Join thousands of successful sellers today and take your business to new heights. Start selling and reach millions of customers!</p>
+    <a href="#" class="cta-button">Start Selling Now</a>
+  </div>
+</section>
+
+<!-- =================== -->
+
+<!-- Vendor js -->
+<script src="<?php echo e(asset('public/backEnd/')); ?>/assets/js/vendor.min.js"></script>
+<script src="<?php echo e(asset('public/frontEnd/')); ?>/js/parsley.min.js"></script>
+<script src="<?php echo e(asset('public/frontEnd/')); ?>/js/form-validation.init.js"></script>
+
+
+<script src="<?php echo e(asset('public/frontEnd/')); ?>/js/app.js"></script>
+<script src="<?php echo e(asset('public/frontEnd/')); ?>/js/particles.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+   window.addEventListener('DOMContentLoaded', (event) => {
+  /* ---- particles.js config ---- */
+
+  particlesJS("particles-js", {
+    "particles": {
+      "number": {
+        "value": 380,
+        "density": {
+          "enable": true,
+          "value_area": 3600
+        }
+      },
+      ...
+    }
+    ...
+  });
+});
+</script>
+<!-- App js -->
+<script src="<?php echo e(asset('public/backEnd/')); ?>/assets/js/app.min.js"></script>
+<script src="<?php echo e(asset('public/backEnd/')); ?>/assets/js/toastr.min.js"></script>
+<?php echo Toastr::message(); ?>
+
+</body>
+</html>
+<?php /**PATH D:\Xampp\htdocs\helpsite\resources\views/frontEnd/seller/login.blade.php ENDPATH**/ ?>

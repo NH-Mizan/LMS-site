@@ -1,0 +1,56 @@
+[26-Aug-2025 02:32:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/mail.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/mail.php on line 16
+[26-Aug-2025 12:42:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/filesystems.php on line 16
+[26-Aug-2025 22:32:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/logging.php:20
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/logging.php on line 20
+[27-Aug-2025 03:12:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/session.php on line 21
+[27-Aug-2025 09:23:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/app.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/app.php on line 18
+[27-Aug-2025 15:54:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/database.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/database.php on line 18
+[27-Aug-2025 18:07:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/session.php on line 21
+[28-Aug-2025 00:03:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/services.php on line 18
+[28-Aug-2025 17:22:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/cache.php on line 18
+[29-Aug-2025 15:51:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/queue.php on line 16
+[10-Sep-2025 08:08:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/filesystems.php on line 16
+[14-Sep-2025 17:54:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/logging.php:20
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/logging.php on line 20
+[17-Sep-2025 03:06:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/services.php on line 18
+[30-Sep-2025 17:32:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/flexzzyc/public_html/config/app.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/flexzzyc/public_html/config/app.php on line 18
