@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\GalleryController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Frontend\FrontendController;
@@ -284,6 +285,14 @@ Route::group(['namespace'=>'Admin','middleware' => ['auth','lock','check_refer']
     Route::post('users/active', [UserController::class,'active'])->name('users.active');
     Route::post('users/destroy', [UserController::class,'destroy'])->name('users.destroy');
     
+    Route::get('gallery/manage', [GalleryController::class,'index'])->name('gallery.index');
+    Route::get('gallery/create', [GalleryController::class,'create'])->name('gallery.create');
+    Route::post('gallery/save', [GalleryController::class,'store'])->name('gallery.store');
+    Route::get('gallery/{id}/edit', [GalleryController::class,'edit'])->name('gallery.edit');
+    Route::post('gallery/update', [GalleryController::class,'update'])->name('gallery.update');
+    Route::post('gallery/inactive', [GalleryController::class,'inactive'])->name('gallery.inactive');
+    Route::post('gallery/active', [GalleryController::class,'active'])->name('gallery.active');
+    Route::post('gallery/destroy', [GalleryController::class,'destroy'])->name('gallery.destroy');
     // roles
     Route::get('roles/manage', [RoleController::class,'index'])->name('roles.index');
     Route::get('roles/{id}/show', [RoleController::class,'show'])->name('roles.show');

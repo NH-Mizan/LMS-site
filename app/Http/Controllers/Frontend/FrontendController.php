@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\BannerCategory;
+use App\Models\Gallery;
 use shurjopayv2\ShurjopayLaravelPackage8\Http\Controllers\ShurjopayController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -39,37 +40,41 @@ use Illuminate\Support\Facades\Log;
 class FrontendController extends Controller
 {
 
-    public function sellerStores($id){
-        $seller = Seller::where(['slug'=>$id, 'status'=>'active'])->first();
-        $store = SellerStore::where(['seller_id'=>$seller->id, 'status'=>1])->first();
+    public function sellerStores($id)
+    {
+        $seller = Seller::where(['slug' => $id, 'status' => 'active'])->first();
+        $store = SellerStore::where(['seller_id' => $seller->id, 'status' => 1])->first();
         // return  $store;
-        $flashpro = Product::where(['seller_id'=>$seller->id,'status' => 1])
-        ->select('id', 'name', 'slug', 'new_price', 'old_price')
-        ->paginate(36);
+        $flashpro = Product::where(['seller_id' => $seller->id, 'status' => 1])
+            ->select('id', 'name', 'slug', 'new_price', 'old_price')
+            ->paginate(36);
 
-        $allpro = Product::where(['seller_id'=>$seller->id,'status' => 1])->count();
-        $banners = SellerStoreImages::where(['seller_id'=>$seller->id,'status' => 1])->get();
+        $allpro = Product::where(['seller_id' => $seller->id, 'status' => 1])->count();
+        $banners = SellerStoreImages::where(['seller_id' => $seller->id, 'status' => 1])->get();
 
-        $topsolds = Product::where(['seller_id'=>$seller->id,'status' => 1])
-        ->select('id', 'name', 'slug', 'new_price', 'old_price')
-        ->orderBy('sold','ASC')
-        ->paginate(36);
-        return view('frontEnd.layouts.pages.store',compact('flashpro','store','topsolds','allpro','banners','seller'));
+        $topsolds = Product::where(['seller_id' => $seller->id, 'status' => 1])
+            ->select('id', 'name', 'slug', 'new_price', 'old_price')
+            ->orderBy('sold', 'ASC')
+            ->paginate(36);
+        return view('frontEnd.layouts.pages.store', compact('flashpro', 'store', 'topsolds', 'allpro', 'banners', 'seller'));
     }
 
     public function index()
     {
-        $generalsetting = GeneralSetting::where('status',1)->limit(1)->first();
+        $generalsetting = GeneralSetting::where('status', 1)->limit(1)->first();
         // return "Welcome to Kenakatar.com";
         $frontcategory = Category::where(['status' => 1])
             ->select('id', 'name', 'image', 'slug', 'status')
             ->get();
 
         $blog = Banner::where(['status' => 1,])->get();
-            
-        $blog_category= BannerCategory::where(['status' => 1,])
+
+        $blog_category = BannerCategory::where(['status' => 1,])
             ->select('id', 'name')
             ->get();
+        $home_gallery1 = Gallery::where('status', 1)->limit(1)->first();
+        $home_gallery2 = Gallery::where('status', 1)->skip(1)->limit(1)->first();
+        $home_gallery3 = Gallery::where('status', 1)->skip(2)->limit(1)->first();
 
 
         $homepageads = Banner::where(['status' => 1, 'category_id' => 10])
@@ -84,14 +89,14 @@ class FrontendController extends Controller
 
 
 
-$hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
+        $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
             ->select('id', 'image', 'link')
             ->limit(1)
             ->get();
-            
-         $flas_sales = Product::where(['status' => 1, 'flashsale' => 1])
+
+        $flas_sales = Product::where(['status' => 1, 'flashsale' => 1])
             ->orderBy('id', 'DESC')
-            ->select('id', 'name', 'slug', 'new_price', 'old_price','sold','stock')
+            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'sold', 'stock')
             ->with('prosizes', 'procolors')
             ->limit(12)
             ->get();
@@ -99,19 +104,19 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
 
         $hotdeal_top = Product::where(['status' => 1, 'topsale' => 1])
             ->orderBy('id', 'DESC')
-            ->select('id', 'name', 'slug', 'new_price', 'old_price','stock')
+            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'stock')
             ->with('prosizes', 'procolors')
             ->limit(12)
             ->get();
         // return $hotdeal_top;
 
         $hotdeal_bottom = Product::where(['status' => 1, 'topsale' => 1])
-            ->select('id', 'name', 'slug', 'new_price', 'old_price','stock')
+            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'stock')
             ->skip(12)
             ->limit(12)
             ->get();
 
-        if($generalsetting->show_category_wise_products){
+        if ($generalsetting->show_category_wise_products) {
             $homeproducts = Category::where(['front_view' => 1, 'status' => 1])
                 ->orderBy('id', 'ASC')
                 ->with(['products', 'products.image', 'products.prosize', 'products.procolor'])
@@ -120,37 +125,37 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
                     $query->setRelation('products', $query->products->take(12));
                     return $query;
                 });
-            
-        }else{
+
+        } else {
             $homeproducts = null;
         }
-            
+
         $reviews = Banner::where(['status' => 1, 'category_id' => 8])
             ->select('id', 'image', 'link')
             ->limit(3)
             ->get();
-            
-        if($generalsetting->show_all_products){
+
+        if ($generalsetting->show_all_products) {
             $all_products = Product::where(['status' => 1])
-            //->orderBy('id', 'DESC')
-            ->inRandomOrder()
-            ->select('id', 'name', 'slug', 'new_price', 'old_price','sold','stock')
-            ->with('prosizes', 'procolors')
-            ->limit(30)
-            ->get();
-        }else{
+                //->orderBy('id', 'DESC')
+                ->inRandomOrder()
+                ->select('id', 'name', 'slug', 'new_price', 'old_price', 'sold', 'stock')
+                ->with('prosizes', 'procolors')
+                ->limit(30)
+                ->get();
+        } else {
             $all_products = null;
         }
-        
-            
-        return view('frontEnd.layouts.pages.index', compact( 'frontcategory', 'hotdeal_top','homeproducts','homepageads2','hitdealsbaner','homepageads','flas_sales','reviews','all_products','blog','blog_category'));
+
+
+        return view('frontEnd.layouts.pages.index', compact('frontcategory', 'hotdeal_top', 'homeproducts', 'homepageads2', 'hitdealsbaner', 'homepageads', 'flas_sales', 'reviews', 'all_products', 'blog', 'blog_category', 'home_gallery1', 'home_gallery2', 'home_gallery3'));
     }
 
     public function hotdeals(Request $request)
     {
 
         $products = Product::where(['status' => 1, 'topsale' => 1])
-            ->select('id', 'name', 'slug', 'new_price', 'old_price','stock');
+            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'stock');
         // return $request->sort;
         if ($request->sort == 1) {
             $products = $products->orderBy('created_at', 'desc');
@@ -167,12 +172,12 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
         } else {
             $products = $products->latest();
         }
-        
+
         $min_price = $products->min('new_price');
         $max_price = $products->max('new_price');
-        if($request->min_price && $request->max_price){
-            $products = $products->where('new_price','>=',$request->min_price);
-            $products = $products->where('new_price','<=',$request->max_price);
+        if ($request->min_price && $request->max_price) {
+            $products = $products->where('new_price', '>=', $request->min_price);
+            $products = $products->where('new_price', '<=', $request->max_price);
         }
         $products = $products->paginate(36);
         return view('frontEnd.layouts.pages.hotdeals', compact('products'));
@@ -180,7 +185,7 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
     public function shop(Request $request)
     {
         $products = Product::where(['status' => 1])
-            ->select('id', 'name', 'slug', 'new_price', 'old_price','stock');
+            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'stock');
         // return $request->sort;
         if ($request->sort == 1) {
             $products = $products->orderBy('created_at', 'desc');
@@ -197,12 +202,12 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
         } else {
             $products = $products->latest();
         }
-        
+
         $min_price = $products->min('new_price');
         $max_price = $products->max('new_price');
-        if($request->min_price && $request->max_price){
-            $products = $products->where('new_price','>=',$request->min_price);
-            $products = $products->where('new_price','<=',$request->max_price);
+        if ($request->min_price && $request->max_price) {
+            $products = $products->where('new_price', '>=', $request->min_price);
+            $products = $products->where('new_price', '<=', $request->max_price);
         }
         $products = $products->paginate(36);
         return view('frontEnd.layouts.pages.shop', compact('products'));
@@ -211,7 +216,7 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
     {
 
         $products = Product::where(['status' => 1, 'flashsale' => 1])
-            ->select('id', 'name', 'slug', 'new_price', 'old_price','stock');
+            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'stock');
         // return $request->sort;
         if ($request->sort == 1) {
             $products = $products->orderBy('created_at', 'desc');
@@ -228,12 +233,12 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
         } else {
             $products = $products->latest();
         }
-        
+
         $min_price = $products->min('new_price');
         $max_price = $products->max('new_price');
-        if($request->min_price && $request->max_price){
-            $products = $products->where('new_price','>=',$request->min_price);
-            $products = $products->where('new_price','<=',$request->max_price);
+        if ($request->min_price && $request->max_price) {
+            $products = $products->where('new_price', '>=', $request->min_price);
+            $products = $products->where('new_price', '<=', $request->max_price);
         }
         $products = $products->paginate(36);
         return view('frontEnd.layouts.pages.flashsales', compact('products'));
@@ -241,11 +246,11 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
 
     public function category($slug, Request $request)
     {
-        $soldShow = $request->sold=='show'?true:false;
+        $soldShow = $request->sold == 'show' ? true : false;
         $category = Category::where(['slug' => $slug, 'status' => 1])->first();
-      
+
         $products = Product::where(['status' => 1, 'category_id' => $category->id])
-            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'category_id','sold','stock');
+            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'category_id', 'sold', 'stock');
         $subcategories = Subcategory::where('category_id', $category->id)->get();
 
         // return $request->sort;
@@ -267,9 +272,9 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
 
         $min_price = $products->min('new_price');
         $max_price = $products->max('new_price');
-        if($request->min_price && $request->max_price){
-            $products = $products->where('new_price','>=',$request->min_price);
-            $products = $products->where('new_price','<=',$request->max_price);
+        if ($request->min_price && $request->max_price) {
+            $products = $products->where('new_price', '>=', $request->min_price);
+            $products = $products->where('new_price', '<=', $request->max_price);
         }
 
         $selectedSubcategories = $request->input('subcategory', []);
@@ -280,15 +285,15 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
         });
 
         $products = $products->paginate(24);
-        return view('frontEnd.layouts.pages.category', compact('category', 'products', 'subcategories', 'min_price', 'max_price','soldShow'));
+        return view('frontEnd.layouts.pages.category', compact('category', 'products', 'subcategories', 'min_price', 'max_price', 'soldShow'));
     }
 
     public function subcategory($slug, Request $request)
     {
-        $soldShow = $request->sold=='show'?true:false;
+        $soldShow = $request->sold == 'show' ? true : false;
         $subcategory = Subcategory::where(['slug' => $slug, 'status' => 1])->first();
         $products = Product::where(['status' => 1, 'subcategory_id' => $subcategory->id])
-            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'category_id', 'subcategory_id','sold','stock');
+            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'category_id', 'subcategory_id', 'sold', 'stock');
         $childcategories = Childcategory::where('subcategory_id', $subcategory->id)->get();
 
         // return $request->sort;
@@ -307,12 +312,12 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
         } else {
             $products = $products->latest();
         }
-        
+
         $min_price = $products->min('new_price');
         $max_price = $products->max('new_price');
-        if($request->min_price && $request->max_price){
-            $products = $products->where('new_price','>=',$request->min_price);
-            $products = $products->where('new_price','<=',$request->max_price);
+        if ($request->min_price && $request->max_price) {
+            $products = $products->where('new_price', '>=', $request->min_price);
+            $products = $products->where('new_price', '<=', $request->max_price);
         }
 
         $selectedChildcategories = $request->input('childcategory', []);
@@ -330,16 +335,16 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
             ->select('id', 'name', 'slug')
             ->get();
 
-        return view('frontEnd.layouts.pages.subcategory', compact('subcategory', 'products', 'impproducts', 'childcategories', 'max_price', 'min_price','soldShow'));
+        return view('frontEnd.layouts.pages.subcategory', compact('subcategory', 'products', 'impproducts', 'childcategories', 'max_price', 'min_price', 'soldShow'));
     }
 
     public function products($slug, Request $request)
     {
-        $soldShow = $request->sold=='show'?true:false;
+        $soldShow = $request->sold == 'show' ? true : false;
         $childcategory = Childcategory::where(['slug' => $slug, 'status' => 1])->first();
         $childcategories = Childcategory::where('subcategory_id', $childcategory->subcategory_id)->get();
         $products = Product::where(['status' => 1, 'childcategory_id' => $childcategory->id])->with('category')
-            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'category_id', 'subcategory_id', 'childcategory_id','sold','stock');
+            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'category_id', 'subcategory_id', 'childcategory_id', 'sold', 'stock');
 
 
         // return $request->sort;
@@ -358,12 +363,12 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
         } else {
             $products = $products->latest();
         }
-        
+
         $min_price = $products->min('new_price');
         $max_price = $products->max('new_price');
-        if($request->min_price && $request->max_price){
-            $products = $products->where('new_price','>=',$request->min_price);
-            $products = $products->where('new_price','<=',$request->max_price);
+        if ($request->min_price && $request->max_price) {
+            $products = $products->where('new_price', '>=', $request->min_price);
+            $products = $products->where('new_price', '<=', $request->max_price);
         }
 
         $products = $products->paginate(24);
@@ -371,10 +376,10 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
         $impproducts = Product::where(['status' => 1, 'topsale' => 1])
             ->with('image')
             ->limit(6)
-            ->select('id', 'name', 'slug','stock')
+            ->select('id', 'name', 'slug', 'stock')
             ->get();
 
-        return view('frontEnd.layouts.pages.childcategory', compact('childcategory', 'products', 'impproducts', 'min_price', 'max_price', 'childcategories','soldShow'));
+        return view('frontEnd.layouts.pages.childcategory', compact('childcategory', 'products', 'impproducts', 'min_price', 'max_price', 'childcategories', 'soldShow'));
     }
 
 
@@ -385,7 +390,7 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
             ->firstOrFail();
         $products = Product::where(['category_id' => $details->category_id, 'status' => 1])
             ->with('image')
-            ->select('id', 'name', 'slug', 'new_price', 'old_price','stock')
+            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'stock')
             ->get();
         $shippingcharge = ShippingCharge::where('status', 1)->get();
         $reviews = Review::where('product_id', $details->id)->get();
@@ -397,9 +402,9 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
             ->with('size')
             ->get();
 
-        $question = Quition::where(['product_id'=> $details->id, 'status'=>'active'])->get();
+        $question = Quition::where(['product_id' => $details->id, 'status' => 'active'])->get();
 
-        return view('frontEnd.layouts.pages.details', compact('details', 'products', 'shippingcharge', 'productcolors', 'productsizes', 'reviews','question'));
+        return view('frontEnd.layouts.pages.details', compact('details', 'products', 'shippingcharge', 'productcolors', 'productsizes', 'reviews', 'question'));
     }
     public function quickview(Request $request)
     {
@@ -409,10 +414,10 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
             echo $data;
         }
     }
-  
+
     public function livesearch(Request $request)
     {
-        $products = Product::select('id', 'name', 'slug', 'new_price', 'old_price','stock')
+        $products = Product::select('id', 'name', 'slug', 'new_price', 'old_price', 'stock')
             ->where('status', 1)
             ->with('image');
         if ($request->keyword) {
@@ -430,7 +435,7 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
     }
     public function search(Request $request)
     {
-        $products = Product::select('id', 'name', 'slug', 'new_price', 'old_price','stock')
+        $products = Product::select('id', 'name', 'slug', 'new_price', 'old_price', 'stock')
             ->where('status', 1)
             ->with('image');
         if ($request->keyword) {
@@ -443,16 +448,16 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
         $keyword = $request->keyword;
         return view('frontEnd.layouts.pages.search', compact('products', 'keyword'));
     }
-      public function blog_details($slug, Request $request)
+    public function blog_details($slug, Request $request)
     {
-         $details = Banner::where(['slug' => $slug, 'status' => 1])->first();
-         $categories= BannerCategory::where(['status' => 1,])
+        $details = Banner::where(['slug' => $slug, 'status' => 1])->first();
+        $categories = BannerCategory::where(['status' => 1,])
             ->get();
-        $lats_blog = Banner::where([ 'status' => 1])
+        $lats_blog = Banner::where(['status' => 1])
             ->get();
         $blog = Banner::where(['category_id' => $details->category_id, 'status' => 1])
             ->get();
-         return view('frontEnd.layouts.pages.blog_details', compact('details','categories','blog','lats_blog'));
+        return view('frontEnd.layouts.pages.blog_details', compact('details', 'categories', 'blog', 'lats_blog'));
     }
 
     public function shipping_charge(Request $request)
@@ -462,18 +467,18 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
         Session::put('shipping', $shipping->amount);
         return view('frontEnd.layouts.ajax.cart');
     }
-      public function about(Request $request)
+    public function about(Request $request)
     {
-             return view('frontEnd.layouts.pages.about');
+        return view('frontEnd.layouts.pages.about');
     }
-      public function blog(Request $request)
+    public function blog(Request $request)
     {
         $blog = Banner::where(['status' => 1,])->get();
-             return view('frontEnd.layouts.pages.blog', compact('blog'));
+        return view('frontEnd.layouts.pages.blog', compact('blog'));
     }
-      public function english(Request $request)
+    public function english(Request $request)
     {
-             return view('frontEnd.layouts.pages.english');
+        return view('frontEnd.layouts.pages.english');
     }
 
     public function contact(Request $request)
@@ -488,7 +493,7 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
                 'subject' => 'required|string|max:255',
                 'message' => 'required|string',
             ]);
-    
+
             // Prepare data for email
             $data = [
                 'name' => $request->name,
@@ -497,11 +502,11 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
                 'subject' => $request->subject,
                 'message' => $request->message,
             ];
-    
-            
+
+
             // Send email
-            $contact = Contact::where('status',1)->first();
-            if($contact->email){
+            $contact = Contact::where('status', 1)->first();
+            if ($contact->email) {
                 try {
                     Mail::to($contact->email)->send(new ContactMail($data));
                 } catch (Exception $e) {
@@ -509,11 +514,11 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
                     Log::error('Email sending failed: ' . $e->getMessage());
                 }
             }
-            
+
             // Redirect to the same page with a success message in query parameters
             return redirect()->route('contact')->with('success', 'Your message has been sent successfully!');
         }
-    
+
         // Load the contact form view with any success message
         return view('frontEnd.layouts.pages.contact');
     }
@@ -531,17 +536,17 @@ $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
     public function campaign($slug)
     {
         $campaign_data = Campaign::where('slug', $slug)->with('images')->first();
-       
-        $products = Product::whereIn('id', function($query) use ($campaign_data) {
+
+        $products = Product::whereIn('id', function ($query) use ($campaign_data) {
             $query->select('product_id')
-                  ->from('campaign_product')
-                  ->where('campaign_id', $campaign_data->id);
+                ->from('campaign_product')
+                ->where('campaign_id', $campaign_data->id);
         })->orWhere('id', $campaign_data->product_id)
-          ->where('status', 1)
-          ->with('image')
-          ->get();
-          
-        
+            ->where('status', 1)
+            ->with('image')
+            ->get();
+
+
         Cart::instance('shopping')->destroy();
         $cart_count = Cart::instance('shopping')->count();
         $product = $products->first();

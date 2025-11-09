@@ -170,19 +170,19 @@
                     <h2 class="text-uppercase fw-bold text-center text-md-start">Our Gallery</h2>
                     <div class="post-corporate-gallery post-corporate-gallery-2 inset-1" data-lightgallery="group">
                         <a class="post-corporate-thumbnail post-corporate-thumbnail-1 post-corporate-thumbnail-custom"
-                            href="images/group-01-original.jpg" data-lightgallery="item">
+                            href="<?php echo e(asset($home_gallery1->image)); ?>" data-lightgallery="item">
                             <img class="post-corporate-thumbnail-image"
-                                src="<?php echo e(asset('public/frontEnd/images/group-01-722x490.jpg')); ?>" alt="" width="722"
+                                src="<?php echo e(asset($home_gallery1->image)); ?>" alt="" width="722"
                                 height="490" /></a>
-                        <a class="post-corporate-thumbnail post-corporate-thumbnail-5" href="images/group-02-original.jpg"
+                        <a class="post-corporate-thumbnail post-corporate-thumbnail-5" href="<?php echo e(asset($home_gallery2->image)); ?>"
                             data-lightgallery="item">
                             <img class="post-corporate-thumbnail-image"
-                                src="<?php echo e(asset('public/frontEnd/images/group-02-360x326.jpg')); ?>" alt="" width="360"
+                                src="<?php echo e(asset($home_gallery2->image)); ?>" alt="" width="360"
                                 height="326" /></a>
-                        <a class="post-corporate-thumbnail post-corporate-thumbnail-5" href="images/group-03-original.jpg"
+                        <a class="post-corporate-thumbnail post-corporate-thumbnail-5" href="<?php echo e(asset($home_gallery3->image)); ?>"
                             data-lightgallery="item">
                             <img class="post-corporate-thumbnail-image"
-                                src="<?php echo e(asset('public/frontEnd/images/group-03-360x326.jpg')); ?>" alt="" width="360"
+                                src="<?php echo e(asset($home_gallery3->image)); ?>" alt="" width="360"
                                 height="326" /></a>
                     </div>
                 </div>
