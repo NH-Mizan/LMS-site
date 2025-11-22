@@ -1,8 +1,9 @@
 
-<?php $__env->startSection('title','Brand Create'); ?>
+<?php $__env->startSection('title','About Edit'); ?>
 <?php $__env->startSection('css'); ?>
 <link href="<?php echo e(asset('public/backEnd')); ?>/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo e(asset('public/backEnd')); ?>/assets/css/switchery.min.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo e(asset('public/backEnd')); ?>/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <div class="container-fluid">
@@ -12,9 +13,9 @@
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
-                    <a href="<?php echo e(route('brands.index')); ?>" class="btn btn-primary rounded-pill">Manage</a>
+                    <a href="<?php echo e(route('about.index')); ?>" class="btn btn-primary rounded-pill">Manage</a>
                 </div>
-                <h4 class="page-title">Brand Create</h4>
+                <h4 class="page-title">About Edit</h4>
             </div>
         </div>
     </div>       
@@ -23,20 +24,21 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-body">
-                <form action="<?php echo e(route('brands.store')); ?>" method="POST" class=row data-parsley-validate=""  enctype="multipart/form-data">
+                <form action="<?php echo e(route('about.update')); ?>" method="POST" class=row data-parsley-validate=""  enctype="multipart/form-data">
                     <?php echo csrf_field(); ?>
+                    <input type="hidden" value="<?php echo e($edit_data->id); ?>" name="id">
                     <div class="col-sm-12">
                         <div class="form-group mb-3">
-                            <label for="name" class="form-label">Name *</label>
-                            <input type="text" class="form-control <?php $__errorArgs = ['name'];
+                            <label for="title" class="form-label">Title *</label>
+                            <input type="text" class="form-control <?php $__errorArgs = ['title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="name" value="<?php echo e(old('name')); ?>" id="name" required="">
-                            <?php $__errorArgs = ['name'];
+unset($__errorArgs, $__bag); ?>" name="title" value="<?php echo e($edit_data->title); ?>" id="title" required="">
+                            <?php $__errorArgs = ['title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -53,7 +55,7 @@ unset($__errorArgs, $__bag); ?>
                     <!-- col-end -->
                     <div class="col-sm-12 mb-3">
                         <div class="form-group">
-                            <label for="image" class="form-label">Image </label>
+                            <label for="image" class="form-label">Image</label>
                             <input type="file" class="form-control <?php $__errorArgs = ['image'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -61,7 +63,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?> " name="image"  value="<?php echo e(old('image')); ?>"  id="image" >
+unset($__errorArgs, $__bag); ?>" name="image" value="<?php echo e($edit_data->image); ?>"  id="image" >
+                            <img src="<?php echo e(asset($edit_data->image)); ?>" alt="" class="edit-image">
                             <?php $__errorArgs = ['image'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -76,12 +79,37 @@ endif;
 unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
+                     <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="description" class="form-label"> Description*</label>
+                            <textarea type="text" class="summernote form-control <?php $__errorArgs = ['description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="description" rows="6" value="<?php echo e(old('description')); ?>"  id="description"><?php echo e($edit_data->description); ?></textarea>
+                            <?php $__errorArgs = ['description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong><?php echo e($message); ?></strong>
+                                </span>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                        </div>
+                    </div>
                     <!-- col end -->
-                    <div class="col-sm-6 mb-3">
+                    <div class="col-sm-12 mb-3">
                         <div class="form-group">
                             <label for="status" class="d-block">Status</label>
                             <label class="switch">
-                              <input type="checkbox" value="1" name="status" checked>
+                              <input type="checkbox" value="1" name="status" <?php if($edit_data->status==1): ?>checked <?php endif; ?>>
                               <span class="slider round"></span>
                             </label>
                             <?php $__errorArgs = ['status'];
@@ -112,18 +140,26 @@ unset($__errorArgs, $__bag); ?>
 </div>
 <?php $__env->stopSection(); ?>
 
-
 <?php $__env->startSection('script'); ?>
 <script src="<?php echo e(asset('public/backEnd/')); ?>/assets/libs/parsleyjs/parsley.min.js"></script>
 <script src="<?php echo e(asset('public/backEnd/')); ?>/assets/js/pages/form-validation.init.js"></script>
 <script src="<?php echo e(asset('public/backEnd/')); ?>/assets/libs/select2/js/select2.min.js"></script>
 <script src="<?php echo e(asset('public/backEnd/')); ?>/assets/js/pages/form-advanced.init.js"></script>
 <script src="<?php echo e(asset('public/backEnd/')); ?>/assets/js/switchery.min.js"></script>
+<script src="<?php echo e(asset('public/backEnd/')); ?>/assets/libs//summernote/summernote-lite.min.js"></script>
 <script>
     $(document).ready(function(){
         var elem = document.querySelector('.js-switch');
         var init = new Switchery(elem);
     });
 </script>
+<script>
+    $(".summernote").summernote({
+        placeholder: "Enter Your Text Here",    
+    });
+</script>
+
+
+
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('backEnd.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Xampp\htdocs\aaa\resources\views/backEnd/brand/create.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('backEnd.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Xampp\htdocs\aaa\resources\views/backEnd/about/edit.blade.php ENDPATH**/ ?>

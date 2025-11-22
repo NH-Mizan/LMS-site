@@ -1,8 +1,9 @@
 @extends('backEnd.layouts.master')
-@section('title','Brand Create')
+@section('title','About Create')
 @section('css')
 <link href="{{asset('public/backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 <link href="{{asset('public/backEnd')}}/assets/css/switchery.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('public/backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -12,9 +13,9 @@
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
-                    <a href="{{route('brands.index')}}" class="btn btn-primary rounded-pill">Manage</a>
+                    <a href="{{route('about.index')}}" class="btn btn-primary rounded-pill">Manage</a>
                 </div>
-                <h4 class="page-title">Brand Create</h4>
+                <h4 class="page-title">About Create</h4>
             </div>
         </div>
     </div>       
@@ -23,13 +24,13 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-body">
-                <form action="{{route('brands.store')}}" method="POST" class=row data-parsley-validate=""  enctype="multipart/form-data">
+                <form action="{{route('about.store')}}" method="POST" class=row data-parsley-validate=""  enctype="multipart/form-data">
                     @csrf
                     <div class="col-sm-12">
                         <div class="form-group mb-3">
-                            <label for="name" class="form-label">Name *</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" id="name" required="">
-                            @error('name')
+                            <label for="title" class="form-label">Title *</label>
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" id="title" required="">
+                            @error('title')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -42,6 +43,17 @@
                             <label for="image" class="form-label">Image </label>
                             <input type="file" class="form-control @error('image') is-invalid @enderror " name="image"  value="{{ old('image') }}"  id="image" >
                             @error('image')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="description" class="form-label"> Description*</label>
+                            <textarea type="text" class="summernote form-control @error('description') is-invalid @enderror" name="description" rows="6" value="{{ old('description') }}"  id="description"></textarea>
+                            @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -84,10 +96,19 @@
 <script src="{{asset('public/backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
 <script src="{{asset('public/backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
 <script src="{{asset('public/backEnd/')}}/assets/js/switchery.min.js"></script>
+<script src="{{asset('public/backEnd/')}}/assets/libs//summernote/summernote-lite.min.js"></script>
 <script>
     $(document).ready(function(){
         var elem = document.querySelector('.js-switch');
         var init = new Switchery(elem);
     });
 </script>
+<script>
+    $(".summernote").summernote({
+        placeholder: "Enter Your Text Here",    
+    });
+</script>
+
+
+
 @endsection

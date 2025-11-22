@@ -513,6 +513,21 @@
               </li>
               <!-- nav items end -->
               <li>
+                <a href="#siebar-about" data-bs-toggle="collapse">
+                  <i data-feather="image"></i>
+                  <span> About Us  </span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="siebar-about">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="<?php echo e(route('about.index')); ?>"><i data-feather="file-plus"></i> About Manage</a>
+                    </li>
+                  </ul>
+                   
+                </div>
+              </li>
+              <li>
                 <a href="#siebar-gallery" data-bs-toggle="collapse">
                   <i data-feather="image"></i>
                   <span> Gallery  </span>

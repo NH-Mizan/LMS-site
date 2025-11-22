@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\GalleryController;
 use Illuminate\Support\Facades\Route;
 
@@ -422,6 +423,16 @@ Route::group(['namespace'=>'Admin','middleware' => ['auth','lock','check_refer']
     Route::post('tag-manager/active', [TagManagerController::class,'active'])->name('tagmanagers.active');
     Route::post('tag-manager/destroy', [TagManagerController::class,'destroy'])->name('tagmanagers.destroy');
     
+    // attribute
+    Route::get('about/manage', [AboutController::class,'index'])->name('about.index');
+    Route::get('about/{id}/show', [AboutController::class,'show'])->name('about.show');
+    Route::get('about/create', [AboutController::class,'create'])->name('about.create');
+    Route::post('about/save', [AboutController::class,'store'])->name('about.store');
+    Route::get('about/{id}/edit', [AboutController::class,'edit'])->name('about.edit');
+    Route::post('about/update', [AboutController::class,'update'])->name('about.update');
+    Route::post('about/inactive', [AboutController::class,'inactive'])->name('about.inactive');
+    Route::post('about/active', [AboutController::class,'active'])->name('about.active');
+    Route::post('about/destroy', [AboutController::class,'destroy'])->name('about.destroy');
     // attribute
     Route::get('brands/manage', [BrandController::class,'index'])->name('brands.index');
     Route::get('brands/{id}/show', [BrandController::class,'show'])->name('brands.show');
