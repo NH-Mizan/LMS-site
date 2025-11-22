@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\OurTeamController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Frontend\FrontendController;
@@ -423,6 +424,16 @@ Route::group(['namespace'=>'Admin','middleware' => ['auth','lock','check_refer']
     Route::post('tag-manager/active', [TagManagerController::class,'active'])->name('tagmanagers.active');
     Route::post('tag-manager/destroy', [TagManagerController::class,'destroy'])->name('tagmanagers.destroy');
     
+    // attribute
+    Route::get('our-team/manage', [OurTeamController::class,'index'])->name('our-team.index');
+    Route::get('our-team/{id}/show', [OurTeamController::class,'show'])->name('our-team.show');
+    Route::get('our-team/create', [OurTeamController::class,'create'])->name('our-team.create');
+    Route::post('our-team/save', [OurTeamController::class,'store'])->name('our-team.store');
+    Route::get('our-team/{id}/edit', [OurTeamController::class,'edit'])->name('our-team.edit');
+    Route::post('our-team/update', [OurTeamController::class,'update'])->name('our-team.update');
+    Route::post('our-team/inactive', [OurTeamController::class,'inactive'])->name('our-team.inactive');
+    Route::post('our-team/active', [OurTeamController::class,'active'])->name('our-team.active');
+    Route::post('our-team/destroy', [OurTeamController::class,'destroy'])->name('our-team.destroy');
     // attribute
     Route::get('about/manage', [AboutController::class,'index'])->name('about.index');
     Route::get('about/{id}/show', [AboutController::class,'show'])->name('about.show');

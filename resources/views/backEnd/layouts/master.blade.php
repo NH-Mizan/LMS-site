@@ -513,6 +513,21 @@
               </li>
               <!-- nav items end -->
               <li>
+                <a href="#siebar-team" data-bs-toggle="collapse">
+                  <i data-feather="image"></i>
+                  <span> Our Team  </span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="siebar-team">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{{route('our-team.index')}}"><i data-feather="file-plus"></i> Our Team Manage</a>
+                    </li>
+                  </ul>
+                   
+                </div>
+              </li>
+              <li>
                 <a href="#siebar-about" data-bs-toggle="collapse">
                   <i data-feather="image"></i>
                   <span> About Us  </span>
