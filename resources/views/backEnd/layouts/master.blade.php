@@ -513,6 +513,21 @@
               </li>
               <!-- nav items end -->
               <li>
+                <a href="#siebar-Testimonial" data-bs-toggle="collapse">
+                  <i data-feather="image"></i>
+                  <span>Testimonial </span>
+                  <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="siebar-Testimonial">
+                  <ul class="nav-second-level">
+                    <li>
+                      <a href="{{route('testimonial.index')}}"><i data-feather="file-plus"></i> Testimonial Manage</a>
+                    </li>
+                  </ul>
+                   
+                </div>
+              </li>
+              <li>
                 <a href="#siebar-team" data-bs-toggle="collapse">
                   <i data-feather="image"></i>
                   <span> Our Team  </span>

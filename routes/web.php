@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\OurTeamController;
+use App\Http\Controllers\Admin\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Frontend\FrontendController;
@@ -434,6 +435,16 @@ Route::group(['namespace'=>'Admin','middleware' => ['auth','lock','check_refer']
     Route::post('our-team/inactive', [OurTeamController::class,'inactive'])->name('our-team.inactive');
     Route::post('our-team/active', [OurTeamController::class,'active'])->name('our-team.active');
     Route::post('our-team/destroy', [OurTeamController::class,'destroy'])->name('our-team.destroy');
+    // attribute
+    Route::get('testimonial/manage', [TestimonialController::class,'index'])->name('testimonial.index');
+    Route::get('testimonial/{id}/show', [TestimonialController::class,'show'])->name('testimonial.show');
+    Route::get('testimonial/create', [TestimonialController::class,'create'])->name('testimonial.create');
+    Route::post('testimonial/save', [TestimonialController::class,'store'])->name('testimonial.store');
+    Route::get('testimonial/{id}/edit', [TestimonialController::class,'edit'])->name('testimonial.edit');
+    Route::post('testimonial/update', [TestimonialController::class,'update'])->name('testimonial.update');
+    Route::post('testimonial/inactive', [TestimonialController::class,'inactive'])->name('testimonial.inactive');
+    Route::post('testimonial/active', [TestimonialController::class,'active'])->name('testimonial.active');
+    Route::post('testimonial/destroy', [TestimonialController::class,'destroy'])->name('testimonial.destroy');
     // attribute
     Route::get('about/manage', [AboutController::class,'index'])->name('about.index');
     Route::get('about/{id}/show', [AboutController::class,'show'])->name('about.show');
