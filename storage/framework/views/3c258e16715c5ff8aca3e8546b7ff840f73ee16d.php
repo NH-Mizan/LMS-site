@@ -17,14 +17,13 @@
         <div class="container">
           <div class="row row-50 justify-content-center align-items-center">
             <div class="col-md-10 col-lg-7">
-              <h3 class="title-costume block-1">The Best Way to Learn Any Foreign Language</h3>
+              <h3 class="title-costume block-1"><?php echo e($about_data->title); ?></h3>
               <div class="block-2 mt-20 mt-md-30 mt-lg-50">
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+               <p><?php echo $about_data->description; ?></p>
               </div><a class="button button-lg button-primary mt-lg-40" href="">Get Started</a>
             </div>
             <div class="col-md-10 col-lg-5 position-relative">
-              <div class="figure-1"><img src="<?php echo e(asset('public/frontEnd/images/about-1-457x566.png')); ?>" alt="" width="457" height="566"/>
+              <div class="figure-1"><img src="<?php echo e(asset($about_data->image)); ?>" alt="" width="457" height="566"/>
               </div>
             </div>
           </div>
@@ -79,74 +78,26 @@
           <h3 class="title-costume">What Clients Say About Us</h3>
           <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
           <div class="row row-30 row-md-50 justify-content-center justify-content-lg-start">
+            <?php $__currentLoopData = $testimonials; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-md-6">
               <!-- Quote Classic-->
               <blockquote class="quote-classic">
                 <div class="quote-classic-inner">
                   <div class="quote-classic-header">
-                    <div class="quote-classic-profile"><img class="quote-classic-avatar" src="<?php echo e(asset('public/frontEnd/images/testimonials-1-84x84.jpg')); ?>" alt="" width="84" height="84"/>
-                      <cite class="quote-classic-cite heading-5">Jane Smith</cite>
+                    <div class="quote-classic-profile"><img class="quote-classic-avatar" src="<?php echo e(asset($value->image)); ?>" alt="" width="84" height="84"/>
+                      <cite class="quote-classic-cite heading-5"><?php echo e($value->name); ?></cite>
                     </div>
-                    <div class="quote-classic-links"><a class="quote-classic-social-link mdi mdi-facebook" href="#"></a></div>
+                    <div class="quote-classic-links"><a class="quote-classic-social-link mdi mdi-facebook" href="<?php echo e($value->link); ?>"></a></div>
                   </div>
                   <div class="quote-classic-text">
-                    <p>Eget gravida cum sociis natoque penatibus et magnis dis parturient. Libero enim sed faucibus turpis in</p>
+                    <p><?php echo $value->description; ?></p>
                   </div>
-                  <time class="quote-classic-time" datetime="2021">Mar 21, 2021</time>
+                  <time class="quote-classic-time" datetime="2021"><?php echo e(\Carbon\Carbon::parse($value->created_at)->format('M d, Y')); ?></time>
                 </div>
               </blockquote>
             </div>
-            <div class="col-md-6">
-              <!-- Quote Classic-->
-              <blockquote class="quote-classic">
-                <div class="quote-classic-inner">
-                  <div class="quote-classic-header">
-                    <div class="quote-classic-profile"><img class="quote-classic-avatar" src="<?php echo e(asset('public/frontEnd/images/testimonials-2-84x84.jpg')); ?>" alt="" width="84" height="84"/>
-                      <cite class="quote-classic-cite heading-5">Peter McMillan</cite>
-                    </div>
-                    <div class="quote-classic-links"><a class="quote-classic-social-link mdi mdi-facebook" href="#"></a></div>
-                  </div>
-                  <div class="quote-classic-text">
-                    <p>Urna id volutpat lacus laoreet non curabitur gravida. Scelerisque viverra mauris in aliquam</p>
-                  </div>
-                  <time class="quote-classic-time" datetime="2021">Mar 21, 2021</time>
-                </div>
-              </blockquote>
-            </div>
-            <div class="col-md-6">
-              <!-- Quote Classic-->
-              <blockquote class="quote-classic">
-                <div class="quote-classic-inner">
-                  <div class="quote-classic-header">
-                    <div class="quote-classic-profile"><img class="quote-classic-avatar" src="<?php echo e(asset('public/frontEnd/images/testimonials-3-84x84.jpg')); ?>" alt="" width="84" height="84"/>
-                      <cite class="quote-classic-cite heading-5">Samantha Lee</cite>
-                    </div>
-                    <div class="quote-classic-links"><a class="quote-classic-social-link mdi mdi-facebook" href="#"></a></div>
-                  </div>
-                  <div class="quote-classic-text">
-                    <p>Purus in mollis nunc sed id semper risus. Et netus et malesuada fames ac turpis. Hendrerit gravida rutrum quisque non</p>
-                  </div>
-                  <time class="quote-classic-time" datetime="2021">Mar 21, 2021</time>
-                </div>
-              </blockquote>
-            </div>
-            <div class="col-md-6">
-              <!-- Quote Classic-->
-              <blockquote class="quote-classic">
-                <div class="quote-classic-inner">
-                  <div class="quote-classic-header">
-                    <div class="quote-classic-profile"><img class="quote-classic-avatar" src="<?php echo e(asset('public/frontEnd/images/testimonials-4-84x84.jpg')); ?>" alt="" width="84" height="84"/>
-                      <cite class="quote-classic-cite heading-5">Kate Wilson</cite>
-                    </div>
-                    <div class="quote-classic-links"><a class="quote-classic-social-link mdi mdi-facebook" href="#"></a></div>
-                  </div>
-                  <div class="quote-classic-text">
-                    <p>Felis eget nunc lobortis mattis aliquam faucibus purus in massa. Malesuada pellentesque elit eget gravida</p>
-                  </div>
-                  <time class="quote-classic-time" datetime="2021">Mar 21, 2021</time>
-                </div>
-              </blockquote>
-            </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            
           </div>
         </div>
       </section>
@@ -160,35 +111,19 @@
               <!-- Owl Carousel-->
               <div class="owl-carousel owl-1 mt-lg-50" data-items="1" data-sm-items="2" data-md-items="3" data-lg-items="2" data-xl-items="3" data-dots="true" data-nav="false" data-stage-padding="0" data-loop="false" data-margin="30" data-mouse-drag="false">
                 <!-- Profile Classic-->
-                <article class="profile-classic"><img class="profile-classic-image" src="<?php echo e(asset('public/frontEnd/images/our-team-1-272x197.jpg')); ?>" alt="" width="272" height="197"/>
+                 <?php $__currentLoopData = $our_team; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <article class="profile-classic"><img class="profile-classic-image" src="<?php echo e(asset($value->image)); ?>" alt="" width="272" height="197"/>
                   <div class="profile-classic-main">
-                    <p class="heading-5 profile-classic-position">Spanish Teacher</p>
-                    <p class="profile-classic-name heading-4">Amanda Peterson</p>
+                    <p class="heading-5 profile-classic-position"><?php echo e($value->designation); ?></p>
+                    <p class="profile-classic-name heading-4"><?php echo e($value->name); ?></p>
                     <div class="profile-classic-unit">
-                      <div class="icon mdi mdi-phone"></div><a class="heading-6" href="tel:#">1-800-366-77-89</a>
+                      <div class="icon mdi mdi-phone"></div><a class="heading-6" href="tel:<?php echo e($value->phone); ?>"><?php echo e($value->phone); ?></a>
                     </div>
                   </div>
                 </article>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <!-- Profile Classic-->
-                <article class="profile-classic"><img class="profile-classic-image" src="<?php echo e(asset('public/frontEnd/images/our-team-2-272x197.jpg')); ?>" alt="" width="272" height="197"/>
-                  <div class="profile-classic-main">
-                    <p class="heading-5 profile-classic-position">English Teacher</p>
-                    <p class="profile-classic-name heading-4">Sam Johnson</p>
-                    <div class="profile-classic-unit">
-                      <div class="icon mdi mdi-phone"></div><a class="heading-6" href="tel:#">1-800-366-77-89</a>
-                    </div>
-                  </div>
-                </article>
-                <!-- Profile Classic-->
-                <article class="profile-classic"><img class="profile-classic-image" src="<?php echo e(asset('public/frontEnd/images/our-team-3-272x197.jpg')); ?>" alt="" width="272" height="197"/>
-                  <div class="profile-classic-main">
-                    <p class="heading-5 profile-classic-position">German Teacher</p>
-                    <p class="profile-classic-name heading-4">Pamela Reed</p>
-                    <div class="profile-classic-unit">
-                      <div class="icon mdi mdi-phone"></div><a class="heading-6" href="tel:#">1-800-366-77-89</a>
-                    </div>
-                  </div>
-                </article>
+               
               </div>
             </div>
           </div>

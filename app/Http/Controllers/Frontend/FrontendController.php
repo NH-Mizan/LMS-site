@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\About;
 use App\Models\BannerCategory;
 use App\Models\Gallery;
+use App\Models\OurTeam;
+use App\Models\Testimonial;
+use PHPUnit\Util\Test;
 use shurjopayv2\ShurjopayLaravelPackage8\Http\Controllers\ShurjopayController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -420,7 +424,10 @@ class FrontendController extends Controller
     }
     public function about(Request $request)
     {
-        return view('frontEnd.layouts.pages.about');
+        $about_data = About::where('status', 1)->first();
+        $testimonials = Testimonial::where('status', 1)->get();
+        $our_team = OurTeam::where('status', 1)->get();
+        return view('frontEnd.layouts.pages.about', compact('about_data','testimonials','our_team'));
     }
     public function blog(Request $request)
     {
