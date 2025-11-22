@@ -4,16 +4,96 @@
     <link rel="stylesheet" href="{{ asset('public/frontEnd/css/owl.theme.default.min.css') }}" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" rel="stylesheet" />
 @endpush
+<style>
+    .no_index_page{
+        display: none !important;
+    }
+    .logo-area.fixed-top{
+        display: none !important;
+    }
+   
+/* By default menu hidden (if you want) */
+.header__area {
+  display: none !important;
+   top: 75px !important;
+  transition: all 0.3s ease;
+}
+
+/* When active class added */
+.header__area.active {
+  display: block !important;
+}
+
+/* Toggle Button */
+.menu__toggle {
+    width: 40px;
+    margin-top: 60px;
+    cursor: pointer;
+}
+
+.menu__toggle span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: #000;
+  margin: 6px 0;
+}
+
+  
+</style>
+
 @section('content')
+
+    <nav class="navbar logo-area ">
+      <div class="container">
+        <div class="logo">
+          <img src="{{ asset($generalsetting->dark_logo) }}" alt="">
+        </div>
+        <div class="contact-info">
+          <div class="phone">
+            <i class="fa fa-phone"></i> {{ $contact->hotline }}
+          </div>
+          <div class="email">
+            <i class="fa fa-envelope"></i> {{ $contact->email }}
+          </div>
+       
+      </div>
+</nav>
+
+  <header class=" header__section navbar logo-area">
+  <div class="container">
+   
+
+    <nav class="header__area "  id="headerArea">
+      <a href="{{route('home')}}">Home</a>
+      <a href="{{route('hotdeals')}}">Our Courses</a>
+      <a href="{{route('about')}}">About</a>
+      <a href="{{route('blog')}}">Blog</a>
+    </nav>
+
+    <!-- Toggle Button -->
+    <div class="menu__toggle" id="menuBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </div>
+</header>
+
 
     <!-- Page Header-->
     <section class="hero"
         style="background: url({{ asset('public/frontEnd/images/bg-image-01.jpg') }}) no-repeat center center / cover;">
         <div class="overlay"></div>
-        <div class="hero-content">
-            <h1>WHY YOU SHOULD CONSIDER DOING THE FCE</h1>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis
-                aute irure dolor in reprehenderit.</p>
+        <div class="hero-content index_container">
+             <p class="hero-des">
+                Our language center offers group and personal lessons in English and other modern languages for all ages and
+                levels of knowledge.</p>
+            <h1 class="hero_title">Improve your
+                english skills
+            </h1>
+           
         </div>
     </section>
 
@@ -30,22 +110,21 @@
                                         class="icon mdi icon-sm linearicons-pencil3"></span>
                                 </div>
                                 <!-- RD Mailform-->
-                                <form class="rd-form rd-mailform form-lg" data-form-output="form-output-global"
-                                    data-form-type="contact" method="post" action="bat/rd-mailform.php">
+                                <form class="rd-form rd-mailform form-lg">
                                     <div class="form-wrap form-wrap-icon wow fadeIn" data-wow-delay=".05s">
                                         <label class="form-label form-label-outside" for="contact-1-name">Name</label>
-                                        <input class="form-input" id="contact-1-name" type="text" name="name">
+                                        <input class="form-input" id="contact-1-name" type="text" name="name" required>
                                         <div class="icon form-icon mdi mdi-account-outline"></div>
                                     </div>
                                     <div class="form-wrap form-wrap-icon wow fadeIn" data-wow-delay=".1s">
                                         <label class="form-label form-label-outside" for="contact-1-phone">Phone</label>
                                         <input class="form-input" id="contact-1-phone" type="text" name="phone"
-                                            data-constraints="">
+                                            data-constraints="" required>
                                         <div class="icon form-icon mdi mdi-phone"></div>
                                     </div>
                                     <div class="form-wrap form-wrap-icon wow fadeIn" data-wow-delay=".15s">
                                         <label class="form-label form-label-outside" for="contact-1-email">E-mail</label>
-                                        <input class="form-input" id="contact-1-email" type="email" name="email">
+                                        <input class="form-input" id="contact-1-email" type="email" name="email" required>
                                         <div class="icon form-icon mdi mdi-email-outline"></div>
                                     </div>
                                     <div class="form-wrap wow fadeIn" data-wow-delay=".2s">
@@ -76,86 +155,30 @@
                                     href="{{ route('hotdeals') }}">See All</a></div>
                         </div>
                         <div class="row row-30 mt-xl-60">
-                            <div class="col-xs-6 col-sm-6 wow fadeIn">
-                                <article class="tour-minimal context-dark">
-                                    <div class="tour-minimal-inner img-overlay"
-                                        style="background-image: url({{ asset('public/frontEnd/images/home-3-2-258x273.jpg') }});">
-                                        <div class="tour-minimal-header">
-                                        </div>
-                                        <div class="tour-minimal-main">
-                                            <h3 class="tour-minimal-title fw-sbold"><a
-                                                    href="english-for-business.html">English for Beginners</a></h3>
-                                            <div class="tour-minimal-pricing">
-                                                <p class="tour-minimal-price tour-minimal-price-new">$25</p>
+                            @foreach ($courses as $value)
+                                <div class="col-xs-6 col-sm-6 wow fadeIn">
+                                    <article class="tour-minimal context-dark">
+                                        <div class="tour-minimal-inner img-overlay"
+                                            style="background-image: url({{ asset($value->image->image) }});">
+                                            <div class="tour-minimal-header">
                                             </div>
-                                            <p class="tour-minimal-comment">Price per lesson</p>
-                                        </div>
-                                        <div class="tour-minimal-caption">
-                                            <p>Our best English course for starter level.</p>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 wow fadeIn" data-wow-delay=".05s">
-                                <article class="tour-minimal context-dark">
-                                    <div class="tour-minimal-inner img-overlay"
-                                        style="background-image: url({{ asset('public/frontEnd/images/home-3-3-258x273.jpg') }});">
-                                        <div class="tour-minimal-header">
-                                        </div>
-                                        <div class="tour-minimal-main">
-                                            <h3 class="tour-minimal-title fw-sbold"><a
-                                                    href="english-for-business.html">Online Learning</a></h3>
-                                            <div class="tour-minimal-pricing">
-                                                <p class="tour-minimal-price tour-minimal-price-new">$35</p>
+                                            <div class="tour-minimal-main">
+                                                <h3 class="tour-minimal-title fw-sbold"><a
+                                                        href="{{ route('product', $value->slug) }}">{{ $value->name }}</a></h3>
+                                                <div class="tour-minimal-pricing">
+                                                    <p class="tour-minimal-price tour-minimal-price-new">
+                                                        ${{ $value->new_price }}</p>
+                                                </div>
+                                                <p class="tour-minimal-comment">Price per lesson</p>
                                             </div>
-                                            <p class="tour-minimal-comment">Price per lesson</p>
-                                        </div>
-                                        <div class="tour-minimal-caption">
-                                            <p>Perfect if you prefer distance education.</p>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 wow fadeIn" data-wow-delay=".05s">
-                                <article class="tour-minimal context-dark">
-                                    <div class="tour-minimal-inner img-overlay"
-                                        style="background-image: url({{ asset('public/frontEnd/images/home-3-4-258x273.jpg') }});">
-                                        <div class="tour-minimal-header">
-                                        </div>
-                                        <div class="tour-minimal-main">
-                                            <h3 class="tour-minimal-title fw-sbold"><a
-                                                    href="english-for-business.html">English for Business</a></h3>
-                                            <div class="tour-minimal-pricing">
-                                                <p class="tour-minimal-price tour-minimal-price-new">$40</p>
+                                            <div class="tour-minimal-caption">
+                                                <p>{{ $value->note }}</p>
                                             </div>
-                                            <p class="tour-minimal-comment">Price per lesson</p>
                                         </div>
-                                        <div class="tour-minimal-caption">
-                                            <p>Business English course designed for managers.</p>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 wow fadeIn" data-wow-delay=".1s">
-                                <article class="tour-minimal context-dark">
-                                    <div class="tour-minimal-inner img-overlay"
-                                        style="background-image: url({{ asset('public/frontEnd/images/home-3-5-258x273.jpg') }});">
-                                        <div class="tour-minimal-header">
-                                        </div>
-                                        <div class="tour-minimal-main">
-                                            <h3 class="tour-minimal-title fw-sbold"><a
-                                                    href="english-for-business.html">English for Kids</a></h3>
-                                            <div class="tour-minimal-pricing">
-                                                <p class="tour-minimal-price tour-minimal-price-new">$17</p>
-                                            </div>
-                                            <p class="tour-minimal-comment">Price per lesson</p>
-                                        </div>
-                                        <div class="tour-minimal-caption">
-                                            <p>Easy-to-learn English course for children.</p>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
+                                    </article>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -171,19 +194,16 @@
                     <div class="post-corporate-gallery post-corporate-gallery-2 inset-1" data-lightgallery="group">
                         <a class="post-corporate-thumbnail post-corporate-thumbnail-1 post-corporate-thumbnail-custom"
                             href="{{ asset($home_gallery1->image)}}" data-lightgallery="item">
-                            <img class="post-corporate-thumbnail-image"
-                                src="{{asset($home_gallery1->image)}}" alt="" width="722"
-                                height="490" /></a>
-                        <a class="post-corporate-thumbnail post-corporate-thumbnail-5" href="{{ asset($home_gallery2->image)}}"
-                            data-lightgallery="item">
-                            <img class="post-corporate-thumbnail-image"
-                                src="{{ asset($home_gallery2->image)}}" alt="" width="360"
-                                height="326" /></a>
-                        <a class="post-corporate-thumbnail post-corporate-thumbnail-5" href="{{ asset($home_gallery3->image)}}"
-                            data-lightgallery="item">
-                            <img class="post-corporate-thumbnail-image"
-                                src="{{ asset($home_gallery3->image) }}" alt="" width="360"
-                                height="326" /></a>
+                            <img class="post-corporate-thumbnail-image" src="{{asset($home_gallery1->image)}}" alt=""
+                                width="722" height="490" /></a>
+                        <a class="post-corporate-thumbnail post-corporate-thumbnail-5"
+                            href="{{ asset($home_gallery2->image)}}" data-lightgallery="item">
+                            <img class="post-corporate-thumbnail-image" src="{{ asset($home_gallery2->image)}}" alt=""
+                                width="360" height="326" /></a>
+                        <a class="post-corporate-thumbnail post-corporate-thumbnail-5"
+                            href="{{ asset($home_gallery3->image)}}" data-lightgallery="item">
+                            <img class="post-corporate-thumbnail-image" src="{{ asset($home_gallery3->image) }}" alt=""
+                                width="360" height="326" /></a>
                     </div>
                 </div>
                 <div class="col-lg-4 offset-top-96">
@@ -191,20 +211,11 @@
                         <div class="col-md-6 col-lg-12">
                             <article class="box-8 mt-30 mt-xl-60 wow fadeIn" data-wow-delay=".1s">
                                 <ul class="list-pricing">
-                                    <li><a href="english-for-business.html"><span class="list-pricing-title">Language
-                                                for Business</span><span>$45</span></a></li>
-                                    <li><a href="english-for-business.html"><span class="list-pricing-title">English for
-                                                Kids</span><span>$15</span></a></li>
-                                    <li><a href="english-for-business.html"><span class="list-pricing-title">Online
-                                                Learning</span><span>$36</span></a></li>
-                                    <li><a href="english-for-business.html"><span class="list-pricing-title">German
-                                                Club</span><span>$21</span></a></li>
-                                    <li><a href="english-for-business.html"><span class="list-pricing-title">Personal
-                                                Lessons</span><span>$35</span></a></li>
-                                    <li><a href="english-for-business.html"><span class="list-pricing-title">Group
-                                                Lessons</span><span>$34</span></a></li>
-                                    <li><a href="english-for-business.html"><span class="list-pricing-title">French for
-                                                Beginners</span><span>$32</span></a></li>
+                                    @foreach ($pro_courses as $value)
+                                        <li><a href="{{ route('product', $value->slug) }}"><span
+                                                    class="list-pricing-title">{{ $value->name }}</span><span>${{  $value->new_price }}</span></a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </article>
                         </div>
@@ -262,10 +273,9 @@
             <h3 class="fw-regular mt-md-20 mt-lg-40 wow fadeIn" data-wow-delay=".025s">Subscribe to our newsletter to
                 receive the latest news & updates.</h3>
             <div class="block-2 block-centered mt-30 mt-lg-60 wow fadeIn" data-wow-delay=".05s">
-                <form class="rd-form rd-mailform form-inline form-lg" data-form-output="form-output-global"
-                    data-form-type="subscribe" method="post" action="bat/rd-mailform.php">
+                <form class="rd-form rd-mailform form-inline form-lg">
                     <div class="form-wrap form-wrap-icon">
-                        <input class="form-input" id="subscribe-form-email" type="email" name="email">
+                        <input class="form-input" id="subscribe-form-email" type="email" name="email" required>
                         <label class="form-label" for="subscribe-form-email">E-mail</label>
                         <div class="icon form-icon form-icon-2 mdi mdi-email-outline"></div>
                     </div>
@@ -287,16 +297,18 @@
                         <article class="post-classic"><a class="post-classic-figure" href="blog-post.html"><img
                                     class="post-classic-image" src="{{ asset($value->image) }}" alt="" width="339"
                                     height="251" /></a>
-                            <time class="post-classic-time" datetime="2021"><p>{{ \Carbon\Carbon::parse($value->created_at)->format('M d, Y') }}</p></time>
+                            <time class="post-classic-time" datetime="2021">
+                                <p>{{ \Carbon\Carbon::parse($value->created_at)->format('M d, Y') }}</p>
+                            </time>
                             <div class="post-classic-divider"></div>
                             <p class="post-classic-title fw-medium link-black">
-                            <a href="{{ route('blog.details', $value->slug) }}">{{ $value->title }}</a>
+                                <a href="{{ route('blog.details', $value->slug) }}">{{ $value->title }}</a>
                             </p>
                         </article>
                     </div>
                 @endforeach
 
-               
+
             </div>
         </div>
     </section>
@@ -308,19 +320,18 @@
                     <h2 class="text-white text-uppercase fw-bold wow fadeIn">Get in Touch</h2>
                     <article class="box-7 mt-md-45 mt-xxl-70 wow fadeIn" data-wow-delay=".05s">
                         <!-- RD Mailform-->
-                        <form class="rd-form rd-mailform form-lg" data-form-output="form-output-global"
-                            data-form-type="contact" method="post" action="bat/rd-mailform.php">
+                        <form class="rd-form rd-mailform form-lg">
                             <div class="row row-30">
                                 <div class="col-md-6">
                                     <div class="form-wrap form-wrap-icon">
-                                        <input class="form-input" id="contact-name" type="text" name="name">
+                                        <input class="form-input" id="contact-name" type="text" name="name" required>
                                         <label class="form-label" for="contact-name">Name</label>
                                         <div class="icon form-icon mdi mdi-account-outline text-primary"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-wrap form-wrap-icon">
-                                        <input class="form-input" id="contact-email" type="email" name="email">
+                                        <input class="form-input" id="contact-email" type="email" name="email" required>
                                         <label class="form-label" for="contact-email">E-mail</label>
                                         <div class="icon form-icon mdi mdi-email-outline text-primary"></div>
                                     </div>
@@ -382,6 +393,15 @@
     <script src="{{ asset('public/frontEnd/js/owl.carousel.min.js') }}"></script>
 
     <script src="{{ asset('public/frontEnd/js/jquery.syotimer.min.js') }}"></script>
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const headerArea = document.getElementById("headerArea");
+
+  menuBtn.addEventListener("click", function () {
+    headerArea.classList.toggle("active");
+  });
+</script>
+
 
     <script>
         $(document).ready(function () {

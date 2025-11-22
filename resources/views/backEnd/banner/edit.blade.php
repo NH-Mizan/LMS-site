@@ -26,21 +26,10 @@
                     @csrf
                     <input type="hidden" value="{{$edit_data->id}}" name="id">
 
-                    <div class="col-sm-12">
-                        <div class="form-group mb-3">
-                            <label for="link" class="form-label">link *</label>
-                            <input type="text" class="form-control @error('link') is-invalid @enderror" name="link" value="{{$edit_data->link}}" id="link" required="">
-                            @error('link')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
                     <!-- col-end -->
-                    <div class="col-sm-12">
+                          <div class="col-sm-12">
                         <div class="form-group mb-3">
-                            <label for="category_id" class="form-label">Banner Category</label>
+                            <label for="category_id" class="form-label">Blog Category</label>
                              <select class="form-control select2-multiple @error('link') is-invalid @enderror" name="category_id" data-toggle="select2"  data-placeholder="Choose ...">
                                 <optgroup>
                                     <option value="">Select..</option>
@@ -56,7 +45,29 @@
                             @enderror
                         </div>
                     </div>
-                    <!-- col end -->
+                     <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">post men name *</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $edit_data->name }}" id="name" required="">
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                     <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="title" class="form-label">title *</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="title" value="{{ $edit_data->title }}" id="title" required="">
+                            @error('title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                   <!-- col end -->
                     <div class="col-sm-12 mb-3">
                         <div class="form-group">
                             <label for="image" class="form-label">Image *</label>
@@ -69,6 +80,20 @@
                             @enderror
                         </div>
                     </div>
+                      <div class="col-sm-12">
+                        <div class="form-group mb-3">
+                            <label for="description" class="form-label"> Description*</label>
+                            <textarea type="text" class="summernote form-control @error('description') is-invalid @enderror" name="description" rows="6" value="{{ $edit_data->description }}"  id="description">{{ $edit_data->description }}</textarea>
+                            @error('description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    
+
+                   
                     <!-- col end -->
                     <div class="col-sm-12 mb-3">
                         <div class="form-group">

@@ -30,7 +30,7 @@
             <?php echo csrf_field(); ?>
             <div class="col-sm-6">
               <div class="form-group mb-3">
-                <label for="name" class="form-label">Product Name *</label>
+                <label for="name" class="form-label">Courses Name *</label>
                 <input type="text" class="form-control <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -54,7 +54,7 @@ unset($__errorArgs, $__bag); ?>
               </div>
             </div>
             <!-- col-end -->
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <div class="form-group mb-3">
                 <label for="category_id" class="form-label">Categories *</label>
                 <select class="form-control select2 <?php $__errorArgs = ['category_id'];
@@ -64,7 +64,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="category_id" value="<?php echo e(old('category_id')); ?>" id="category_id" required>
+unset($__errorArgs, $__bag); ?>" name="category_id" value="<?php echo e(old('category_id')); ?>" id="category_id">
                   <option value="">Select..</option>
                   <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
@@ -83,9 +83,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
               </div>
-            </div>
+            </div> -->
             <!-- col end -->
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <div class="form-group mb-3">
                 <label for="subcategory_id" class="form-label">SubCategories (Optional)</label>
                 <select class="form-control select2 <?php $__errorArgs = ['subcategory_id'];
@@ -113,9 +113,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
               </div>
-            </div>
+            </div> -->
             <!-- col end -->
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <div class="form-group mb-3">
                 <label for="childcategory_id" class="form-label">Child Categories (Optional)</label>
                 <select class="form-control select2 <?php $__errorArgs = ['childcategory_id'];
@@ -143,10 +143,10 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
               </div>
-            </div>
+            </div> -->
             <!-- col end -->
 
-            <div class="col-sm-4">
+            <!-- <div class="col-sm-4">
               <div class="form-group mb-3">
                 <label for="category_id" class="form-label">Brands</label>
                 <select class="form-control select2 <?php $__errorArgs = ['brand_id'];
@@ -175,9 +175,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
               </div>
-            </div>
+            </div> -->
             <!-- col end -->
-            <div class="col-sm-4">
+            <!-- <div class="col-sm-4">
               <div class="form-group mb-3">
                 <label for="purchase_price" class="form-label">Purchase Price *</label>
                 <input type="text" class="form-control <?php $__errorArgs = ['purchase_price'];
@@ -187,7 +187,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="purchase_price" value="<?php echo e(old('purchase_price')); ?>" id="purchase_price" required />
+unset($__errorArgs, $__bag); ?>" name="purchase_price" value="<?php echo e(old('purchase_price')); ?>" id="purchase_price"  />
                 <?php $__errorArgs = ['purchase_price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -201,7 +201,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
               </div>
-            </div>
+            </div> -->
             <!-- col-end -->
             <!-- col-end -->
             <div class="col-sm-4">
@@ -258,7 +258,7 @@ unset($__errorArgs, $__bag); ?>
             <!-- col-end -->
             <div class="col-sm-4">
               <div class="form-group mb-3">
-                <label for="stock" class="form-label">Stock *</label>
+                <label for="stock" class="form-label">Duration *</label>
                 <input type="text" class="form-control <?php $__errorArgs = ['stock'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -322,7 +322,7 @@ unset($__errorArgs, $__bag); ?>
             <!-- col end -->
             <div class="col-sm-6">
               <div class="form-group mb-3">
-                <label for="pro_unit" class="form-label">Product Unit (Optional)</label>
+                <label for="pro_unit" class="form-label">Teacher Name</label>
                 <input type="text" class="form-control <?php $__errorArgs = ['pro_unit'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -371,7 +371,7 @@ unset($__errorArgs, $__bag); ?>
               </div>
             </div>
 
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <div class="form-group mb-3">
                 <label for="roles" class="form-label">Size (Option)</label>
                 <select class="form-control select2" name="proSize[]" multiple="multiple">
@@ -393,9 +393,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
               </div>
-            </div>
+            </div> -->
              <!--col end -->
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <div class="form-group mb-3">
                 <label for="color" class="form-label">Color (Optional)</label>
                 <select class="form-control select2" name="proColor[]" multiple="multiple">
@@ -417,7 +417,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
               </div>
-            </div>
+            </div> -->
              <!--col end -->
             <div class="col-sm-12 mb-3">
               <div class="form-group">
@@ -447,7 +447,7 @@ unset($__errorArgs, $__bag); ?>
                <!--col end -->
             <div class="col-sm-12 mb-3">
               <div class="form-group">
-                <label for="note" class="form-label">Note </label>
+                <label for="note" class="form-label">Hover Note </label>
                 <textarea name="note" rows="6" class=" form-control <?php $__errorArgs = ['note'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -473,7 +473,7 @@ unset($__errorArgs, $__bag); ?>
             <!-- col end -->
             <div class="col-sm-3 mb-3">
               <div class="form-group mb-3">
-                <label for="sold" class="form-label">Sold</label>
+                <label for="sold" class="form-label">Time</label>
                 <input type="text" class="form-control <?php $__errorArgs = ['sold'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -496,19 +496,18 @@ endif;
 unset($__errorArgs, $__bag); ?>
               </div>
             </div>
-            <!-- col end -->
             <div class="col-sm-3 mb-3">
               <div class="form-group mb-3">
-                <label for="pdf" class="form-label">PDF</label>
-                <input type="file" class="form-control <?php $__errorArgs = ['pdf'];
+                <label for="location" class="form-label">Location</label>
+                <input type="text" class="form-control <?php $__errorArgs = ['location'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="pdf" value="<?php echo e(old('pdf')); ?>" id="pdf" />
-                <?php $__errorArgs = ['pdf'];
+unset($__errorArgs, $__bag); ?>" name="location" value="<?php echo e(old('location')); ?>" id="location" />
+                <?php $__errorArgs = ['location'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -522,6 +521,8 @@ endif;
 unset($__errorArgs, $__bag); ?>
               </div>
             </div>
+            <!-- col end -->
+           
             <!-- col end -->
             <div class="col-sm-3 mb-3">
               <div class="form-group">

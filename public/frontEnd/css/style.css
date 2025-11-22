@@ -111,7 +111,18 @@ body {
 	-webkit-text-size-adjust: none;
 	-webkit-font-smoothing: subpixel-antialiased;
 }
-
+h1.hero_title {
+    text-align: left !important;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 61px !important;
+}
+p.hero-des {
+    text-align: left;
+}
+.hero-content.index_container {
+    margin-left: -251px;
+}
 @media (min-width: 768px) {
 	body {
 		font-size: 16px;
@@ -17507,4 +17518,9 @@ html[class*="ie"] .dtp-hand, html[class*="ie"] .dtp-hour-hand {
   .hero-content p {
     font-size: 16px;
   }
+}
+.contact-info {
+    color: #fff;
+    display: flex;
+    gap: 30px;
 }

@@ -1,11 +1,11 @@
-@extends('frontEnd.layouts.master')
-@section('title', $details->name)
+
+<?php $__env->startSection('title', $details->name); ?>
 
 
-@push('css')
-    <link rel="stylesheet" href="{{ asset('public/frontEnd/css/zoomsl.css') }}">
-@endpush
- <section class="hero"style="background: url({{ asset('public/frontEnd/images/bg-image-4.jpg') }}) no-repeat center center / cover;">
+<?php $__env->startPush('css'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('public/frontEnd/css/zoomsl.css')); ?>">
+<?php $__env->stopPush(); ?>
+ <section class="hero"style="background: url(<?php echo e(asset('public/frontEnd/images/bg-image-4.jpg')); ?>) no-repeat center center / cover;">
       <div class="overlay"></div>
       <div class="hero-content">
         <h1> Courses Details</h1>
@@ -31,38 +31,38 @@
                 <div class="row row-50">
                   <div class="col-lg-8">
                     <article class="post-info inset-1">
-                      <h2 class="text-uppercase fw-bold post-info-title">{{ $details->name }}</h2>
+                      <h2 class="text-uppercase fw-bold post-info-title"><?php echo e($details->name); ?></h2>
                       <div class="post-info-details">
-                        <p class="post-info-price">${{ $details->new_price }}</p>
+                        <p class="post-info-price">$<?php echo e($details->new_price); ?></p>
                         <p class="big">per lesson</p>
                       </div>
                       <div class="post-info-meta">
                         <ul class="post-info-meta-list">
-                          <li><span class="icon mdi mdi-clock"></span><span>{{ $details->stock }} </span></li>
-                          <li><span class="icon mdi mdi-star-outline"></span><span>{{ $details->pro_unit }}</span></li>
+                          <li><span class="icon mdi mdi-clock"></span><span><?php echo e($details->stock); ?> </span></li>
+                          <li><span class="icon mdi mdi-star-outline"></span><span><?php echo e($details->pro_unit); ?></span></li>
                         </ul>
                       </div>
-                      <p>{!! $details->description !!}</p>
+                      <p><?php echo $details->description; ?></p>
                       <table class="post-info-table">
                         <tr>
                           <td>Location</td>
-                          <td>{{ $details->location }}</td>
+                          <td><?php echo e($details->location); ?></td>
                         </tr>
                         <tr>
                           <td>Teacher</td>
-                          <td>{{ $details->pro_unit }}</td>
+                          <td><?php echo e($details->pro_unit); ?></td>
                         </tr>
                         <tr>
                           <td>Time</td>
-                          <td>{{ $details->sold }} PM</td>
+                          <td><?php echo e($details->sold); ?> PM</td>
                         </tr>
                       </table>
                       <h2 class="text-uppercase fw-bold mt-md-30 mt-lg-50 mt-xl-80 offset-top-40">Gallery</h2>
                       <p>Pellentesque quis dui varius, dapibus velit id, iaculis ipsum. Morbi ac eros feugiat, lacinia elit ut elementum turpis</p>
                       <div class="row row-6 row-x-6" data-lightgallery="group">
-                        @foreach($gallery as $value)
-                        <div class="col-4"><a class="thumbnail-light" href="{{ asset($value->image) }}" data-lightgallery="item"><img class="thumbnail-light-image" src="{{ asset($value->image) }}" alt="" width="355" height="359"/></a></div>
-                        @endforeach
+                        <?php $__currentLoopData = $gallery; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="col-4"><a class="thumbnail-light" href="<?php echo e(asset($value->image)); ?>" data-lightgallery="item"><img class="thumbnail-light-image" src="<?php echo e(asset($value->image)); ?>" alt="" width="355" height="359"/></a></div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                         
                       </div>
@@ -119,7 +119,7 @@
                           </div>
                           <div class="collapse show" id="accordion1-card-body-fnstwnww" aria-labelledby="accordion1-card-head-ailwqkhe" data-parent="#accordion1" role="tabpanel">
                             <div class="card-body">
-                              <article class="box-float-1"><img src="{{ asset('public/frontEnd/images/single-tour-10-162x119.jpg') }}" alt="" width="162" height="119"/>
+                              <article class="box-float-1"><img src="<?php echo e(asset('public/frontEnd/images/single-tour-10-162x119.jpg')); ?>" alt="" width="162" height="119"/>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit ut tortor pretium viverra. Et tortor consequat id porta.</p>
                               </article>
                               <div class="row row-10">
@@ -147,7 +147,7 @@
                           </div>
                           <div class="collapse" id="accordion1-card-body-fcrawxji" aria-labelledby="accordion1-card-head-upikxjim" data-parent="#accordion1" role="tabpanel">
                             <div class="card-body">
-                              <article class="box-float-1"><img src="{{ asset('public/frontEnd/images/single-tour-11-162x119.jpg') }}" alt="" width="162" height="119"/>
+                              <article class="box-float-1"><img src="<?php echo e(asset('public/frontEnd/images/single-tour-11-162x119.jpg')); ?>" alt="" width="162" height="119"/>
                                 <p>Urna cursus eget nunc scelerisque viverra mauris. Egestas maecenas pharetra convallis posuere. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat.</p>
                               </article>
                               <div class="row row-10">
@@ -175,7 +175,7 @@
                           </div>
                           <div class="collapse" id="accordion1-card-body-rquiknmj" aria-labelledby="accordion1-card-head-iwihlbrq" data-parent="#accordion1" role="tabpanel">
                             <div class="card-body">
-                              <article class="box-float-1"><img src="{{ asset('public/frontEnd/images/single-tour-12-162x119.jpg') }}" alt="" width="162" height="119"/>
+                              <article class="box-float-1"><img src="<?php echo e(asset('public/frontEnd/images/single-tour-12-162x119.jpg')); ?>" alt="" width="162" height="119"/>
                                 <p>Sed euismod nisi porta lorem mollis aliquam ut porttitor leo. Volutpat consequat mauris nunc congue nisi vitae suscipit. At imperdiet dui accumsan sit amet nulla facilisi.</p>
                               </article>
                               <div class="row row-10">
@@ -203,7 +203,7 @@
                           </div>
                           <div class="collapse" id="accordion1-card-body-thxakpsi" aria-labelledby="accordion1-card-head-skaxldij" data-parent="#accordion1" role="tabpanel">
                             <div class="card-body">
-                              <article class="box-float-1"><img src="{{ asset('public/frontEnd/images/single-tour-13-162x119.jpg') }}" alt="" width="162" height="119"/>
+                              <article class="box-float-1"><img src="<?php echo e(asset('public/frontEnd/images/single-tour-13-162x119.jpg')); ?>" alt="" width="162" height="119"/>
                                 <p>Ut placerat orci nulla pellentesque. Elementum integer enim neque volutpat ac tincidunt. Elementum nibh tellus molestie nunc non blandit massa. Leo in vitae turpis massa. Tincidunt augue interdum velit euismod in pellentesque massa placerat.</p>
                               </article>
                               <div class="row row-10">
@@ -231,7 +231,7 @@
                           </div>
                           <div class="collapse" id="accordion1-card-body-htylbjfv" aria-labelledby="accordion1-card-head-xvhyjdgv" data-parent="#accordion1" role="tabpanel">
                             <div class="card-body">
-                              <article class="box-float-1"><img src="{{ asset('public/frontEnd/images/single-tour-14-162x119.jpg') }}" alt="" width="162" height="119"/>
+                              <article class="box-float-1"><img src="<?php echo e(asset('public/frontEnd/images/single-tour-14-162x119.jpg')); ?>" alt="" width="162" height="119"/>
                                 <p>Donec adipiscing tristique risus nec. Curabitur gravida arcu ac tortor dignissim convallis. At elementum eu facilisis sed. Placerat vestibulum lectus mauris ultrices eros.</p>
                               </article>
                               <div class="row row-10">
@@ -349,15 +349,15 @@
                       <h2 class="text-uppercase fw-bold">Gallery</h2>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere metus et tortor pulvinar venenatis. Aliquam erat volutpat. Nam ultrices semper felis, at laoreet metus</p>
                       <div class="row row-6 row-x-6" data-lightgallery="group">
-                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-4-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="{{ asset('public/frontEnd/images/single-tour-4-355x359.jpg') }}" alt="" width="355" height="359"/></a></div>
-                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-7-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="{{ asset('public/frontEnd/images/single-tour-7-355x359.jpg') }}" alt="" width="355" height="359"/></a></div>
-                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-9-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="{{ asset('public/frontEnd/images/single-tour-9-355x359.jpg') }}" alt="" width="355" height="359"/></a></div>
-                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-2-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="{{ asset('public/frontEnd/images/single-tour-2-355x359.jpg') }}" alt="" width="355" height="359"/></a></div>
-                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-5-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="{{ asset('public/frontEnd/images/single-tour-5-355x359.jpg') }}" alt="" width="355" height="359"/></a></div>
-                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-6-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="{{ asset('public/frontEnd/images/single-tour-6-355x359.jpg') }}" alt="" width="355" height="359"/></a></div>
-                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-1-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="{{ asset('public/frontEnd/images/single-tour-1-355x359.jpg') }}" alt="" width="355" height="359"/></a></div>
-                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-8-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="{{ asset('public/frontEnd/images/single-tour-8-355x359.jpg') }}" alt="" width="355" height="359"/></a></div>
-                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-3-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="{{ asset('public/frontEnd/images/single-tour-3-355x359.jpg') }}" alt="" width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-4-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="<?php echo e(asset('public/frontEnd/images/single-tour-4-355x359.jpg')); ?>" alt="" width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-7-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="<?php echo e(asset('public/frontEnd/images/single-tour-7-355x359.jpg')); ?>" alt="" width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-9-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="<?php echo e(asset('public/frontEnd/images/single-tour-9-355x359.jpg')); ?>" alt="" width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-2-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="<?php echo e(asset('public/frontEnd/images/single-tour-2-355x359.jpg')); ?>" alt="" width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-5-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="<?php echo e(asset('public/frontEnd/images/single-tour-5-355x359.jpg')); ?>" alt="" width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-6-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="<?php echo e(asset('public/frontEnd/images/single-tour-6-355x359.jpg')); ?>" alt="" width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-1-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="<?php echo e(asset('public/frontEnd/images/single-tour-1-355x359.jpg')); ?>" alt="" width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-8-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="<?php echo e(asset('public/frontEnd/images/single-tour-8-355x359.jpg')); ?>" alt="" width="355" height="359"/></a></div>
+                        <div class="col-4"><a class="thumbnail-light" href="images/single-tour-3-original.jpg" data-lightgallery="item"><img class="thumbnail-light-image" src="<?php echo e(asset('public/frontEnd/images/single-tour-3-355x359.jpg')); ?>" alt="" width="355" height="359"/></a></div>
                       </div>
                     </div>
                   </div>
@@ -468,7 +468,7 @@
                         </div>
                       </article>
                       <div class="comment-review-group">
-                        <article class="comment-review"><img class="comment-review-avatar" src="{{ asset('public/frontEnd/images/single-tour-15-86x86.jpg') }}" alt="" width="86" height="86"/>
+                        <article class="comment-review"><img class="comment-review-avatar" src="<?php echo e(asset('public/frontEnd/images/single-tour-15-86x86.jpg')); ?>" alt="" width="86" height="86"/>
                           <div class="comment-review-main">
                             <p class="heading-5 comment-review-name">Jane Smith</p>
                             <time datetime="2021">October 5, 2021 at 1:44 pm</time>
@@ -519,7 +519,7 @@
                             </ul>
                           </div>
                         </article>
-                        <article class="comment-review"><img class="comment-review-avatar" src="{{ asset('public/frontEnd/images/single-tour-16-86x86.jpg') }}" alt="" width="86" height="86"/>
+                        <article class="comment-review"><img class="comment-review-avatar" src="<?php echo e(asset('public/frontEnd/images/single-tour-16-86x86.jpg')); ?>" alt="" width="86" height="86"/>
                           <div class="comment-review-main">
                             <p class="heading-5 comment-review-name">Peter Wilson</p>
                             <time datetime="2021">October 5, 2021 at 2:15 pm</time>
@@ -687,28 +687,34 @@
         </div>
       </section>
 
-@push('script')
-    <script src="{{ asset('public/frontEnd/js/owl.carousel.min.js') }}"></script>
+<?php $__env->startPush('script'); ?>
+    <script src="<?php echo e(asset('public/frontEnd/js/owl.carousel.min.js')); ?>"></script>
 
-    <script src="{{ asset('public/frontEnd/js/zoomsl.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontEnd/js/zoomsl.min.js')); ?>"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        @error ($errors->any())
-            @foreach ($errors->all() as $error)
+        <?php $__errorArgs = [$errors->any()];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 Swal.fire({
                     toast: true,
                     position: 'top-end',
                     icon: 'error',
-                    title: '{{ $error }}',
+                    title: '<?php echo e($error); ?>',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
                 });
-            @endforeach
-        @endif
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <?php endif; ?>
     </script>
 
 
 
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('frontEnd.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\Xampp\htdocs\aaa\resources\views/frontEnd/layouts/pages/details.blade.php ENDPATH**/ ?>

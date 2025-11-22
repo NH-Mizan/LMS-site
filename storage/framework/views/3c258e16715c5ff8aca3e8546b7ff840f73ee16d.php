@@ -21,7 +21,7 @@
               <div class="block-2 mt-20 mt-md-30 mt-lg-50">
                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                 <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-              </div><a class="button button-lg button-primary mt-lg-40" href="contact-us.html">Get Started</a>
+              </div><a class="button button-lg button-primary mt-lg-40" href="">Get Started</a>
             </div>
             <div class="col-md-10 col-lg-5 position-relative">
               <div class="figure-1"><img src="<?php echo e(asset('public/frontEnd/images/about-1-457x566.png')); ?>" alt="" width="457" height="566"/>

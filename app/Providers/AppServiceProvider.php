@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Product;
 use Illuminate\Support\ServiceProvider;
 use App\Models\GeneralSetting;
 use App\Models\Category;
@@ -78,6 +79,8 @@ class AppServiceProvider extends ServiceProvider
         
         $pendingorder = Order::where('order_status','1')->latest()->limit(9)->get();
         view()->share('pendingorder',$pendingorder); 
+        $pro_courses = Product::where('status','1')->limit(9)->get();
+        view()->share('pro_courses',$pro_courses); 
         
         $orderstatus = OrderStatus::get();
         view()->share('orderstatus',$orderstatus);

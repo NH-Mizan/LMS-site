@@ -77,30 +77,12 @@ class FrontendController extends Controller
         $home_gallery3 = Gallery::where('status', 1)->skip(2)->limit(1)->first();
 
 
-        $homepageads = Banner::where(['status' => 1, 'category_id' => 10])
-            ->select('id', 'image', 'link')
-            ->limit(1)
-            ->get();
-
-        $homepageads2 = Banner::where(['status' => 1, 'category_id' => 11])
-            ->select('id', 'image', 'link')
-            ->limit(1)
-            ->get();
-
-
-
-        $hitdealsbaner = Banner::where(['status' => 1, 'category_id' => 9])
-            ->select('id', 'image', 'link')
-            ->limit(1)
-            ->get();
-
-        $flas_sales = Product::where(['status' => 1, 'flashsale' => 1])
+        $courses = Product::where(['status' => 1, ])
             ->orderBy('id', 'DESC')
-            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'sold', 'stock')
-            ->with('prosizes', 'procolors')
+            ->with('image')
             ->limit(12)
             ->get();
-        // return $hotdeal_top;
+        
 
         $hotdeal_top = Product::where(['status' => 1, 'topsale' => 1])
             ->orderBy('id', 'DESC')
@@ -148,38 +130,13 @@ class FrontendController extends Controller
         }
 
 
-        return view('frontEnd.layouts.pages.index', compact('frontcategory', 'hotdeal_top', 'homeproducts', 'homepageads2', 'hitdealsbaner', 'homepageads', 'flas_sales', 'reviews', 'all_products', 'blog', 'blog_category', 'home_gallery1', 'home_gallery2', 'home_gallery3'));
+        return view('frontEnd.layouts.pages.index', compact('frontcategory', 'hotdeal_top', 'homeproducts', 'reviews', 'all_products', 'blog', 'blog_category', 'home_gallery1', 'home_gallery2', 'home_gallery3','courses'));
     }
 
     public function hotdeals(Request $request)
     {
 
-        $products = Product::where(['status' => 1, 'topsale' => 1])
-            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'stock');
-        // return $request->sort;
-        if ($request->sort == 1) {
-            $products = $products->orderBy('created_at', 'desc');
-        } elseif ($request->sort == 2) {
-            $products = $products->orderBy('created_at', 'asc');
-        } elseif ($request->sort == 3) {
-            $products = $products->orderBy('new_price', 'desc');
-        } elseif ($request->sort == 4) {
-            $products = $products->orderBy('new_price', 'asc');
-        } elseif ($request->sort == 5) {
-            $products = $products->orderBy('name', 'asc');
-        } elseif ($request->sort == 6) {
-            $products = $products->orderBy('name', 'desc');
-        } else {
-            $products = $products->latest();
-        }
-
-        $min_price = $products->min('new_price');
-        $max_price = $products->max('new_price');
-        if ($request->min_price && $request->max_price) {
-            $products = $products->where('new_price', '>=', $request->min_price);
-            $products = $products->where('new_price', '<=', $request->max_price);
-        }
-        $products = $products->paginate(36);
+        $products = Product::where(['status' => 1])->with('image')->get();
         return view('frontEnd.layouts.pages.hotdeals', compact('products'));
     }
     public function shop(Request $request)
@@ -386,25 +343,19 @@ class FrontendController extends Controller
     public function details($slug)
     {
         $details = Product::where(['slug' => $slug, 'status' => 1])
-            ->with('image', 'images', 'category', 'subcategory', 'childcategory')
+            ->with('image', 'images')
             ->firstOrFail();
         $products = Product::where(['category_id' => $details->category_id, 'status' => 1])
             ->with('image')
-            ->select('id', 'name', 'slug', 'new_price', 'old_price', 'stock')
             ->get();
-        $shippingcharge = ShippingCharge::where('status', 1)->get();
+        
         $reviews = Review::where('product_id', $details->id)->get();
-        $productcolors = Productcolor::where('product_id', $details->id)
-            ->with('color')
-            ->get();
-        // return $productcolors;
-        $productsizes = Productsize::where('product_id', $details->id)
-            ->with('size')
-            ->get();
+     
 
         $question = Quition::where(['product_id' => $details->id, 'status' => 'active'])->get();
+        $gallery = Gallery::where('status', 1)->limit(6)->get();
 
-        return view('frontEnd.layouts.pages.details', compact('details', 'products', 'shippingcharge', 'productcolors', 'productsizes', 'reviews', 'question'));
+        return view('frontEnd.layouts.pages.details', compact('details', 'products', 'reviews', 'question','gallery'));
     }
     public function quickview(Request $request)
     {

@@ -70,7 +70,7 @@
   <div class="page">
 
 
-    <header class="navbar logo-area">
+    <header class="no_index_page navbar logo-area ">
       <div class="container">
         <div class="logo">
           <img src="{{ asset($generalsetting->dark_logo) }}" alt="">
@@ -165,16 +165,12 @@
               <h6 class="footer-classic-title inset-3">Popular Courses</h6>
               <div class="footer-classic-item-block footer-classic-item-block-3">
                 <ul class="list-pricing">
-                  <li><a href="{{route('hotdeals')}}"><span class="list-pricing-title">English for
-                        Kids</span><span>$45</span></a></li>
-                  <li><a href="english-for-business.html"><span class="list-pricing-title">Online
-                        Learning</span><span>$15</span></a></li>
-                  <li><a href="english-for-business.html"><span class="list-pricing-title">German
-                        Club</span><span>$36</span></a></li>
-                  <li><a href="english-for-business.html"><span class="list-pricing-title">Personal
-                        Lessons</span><span>$21</span></a></li>
-                  <li><a href="english-for-business.html"><span class="list-pricing-title">Group
-                        Lessons</span><span>$35</span></a></li>
+                  @foreach ($pro_courses as $value )
+                  <li><a href="{{ route('product', $value->slug) }}"><span class="list-pricing-title">{{ $value->name }}</span><span>${{ $value->new_price }}</span></a></li>
+                  @endforeach
+
+                  
+                  
                 </ul>
               </div>
             </div>
@@ -599,6 +595,8 @@
       $("body").css("overflow-y", "auto");
     })
   </script>
+
+
 
   <!-- End Google Tag Manager (noscript) -->
 </body>

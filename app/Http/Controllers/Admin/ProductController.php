@@ -66,15 +66,7 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'category_id' => 'required',
-            'new_price' => 'required',
-            'purchase_price' => 'required',
-            'stock' => 'required',
-            'category_id' => 'required',
-            'description' => 'required',
-        ]);
+      
         $last_id = Product::orderBy('id', 'desc')->select('id')->first();
         $last_id = $last_id?$last_id->id+1:1;
         $input = $request->except(['image','files','proSize','proColor']);
@@ -165,15 +157,7 @@ class ProductController extends Controller
     
     public function update(Request $request)
     {
-       $this->validate($request, [
-            'name' => 'required',
-            'category_id' => 'required',
-            'new_price' => 'required',
-            'purchase_price' => 'required',
-            'stock' => 'required',
-            'category_id' => 'required',
-            'description' => 'required',
-        ]);
+    
           
         $update_data = Product::find($request->id);
         $input = $request->except(['image','files','proSize','proColor']);

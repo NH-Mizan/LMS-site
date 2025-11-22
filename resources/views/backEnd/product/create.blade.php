@@ -30,7 +30,7 @@
             @csrf
             <div class="col-sm-6">
               <div class="form-group mb-3">
-                <label for="name" class="form-label">Product Name *</label>
+                <label for="name" class="form-label">Courses Name *</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" id="name" required="" />
                 @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -40,10 +40,10 @@
               </div>
             </div>
             <!-- col-end -->
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <div class="form-group mb-3">
                 <label for="category_id" class="form-label">Categories *</label>
-                <select class="form-control select2 @error('category_id') is-invalid @enderror" name="category_id" value="{{ old('category_id') }}" id="category_id" required>
+                <select class="form-control select2 @error('category_id') is-invalid @enderror" name="category_id" value="{{ old('category_id') }}" id="category_id">
                   <option value="">Select..</option>
                   @foreach($categories as $category)
                   <option value="{{$category->id}}">{{$category->name}}</option>
@@ -55,9 +55,9 @@
                 </span>
                 @enderror
               </div>
-            </div>
+            </div> -->
             <!-- col end -->
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <div class="form-group mb-3">
                 <label for="subcategory_id" class="form-label">SubCategories (Optional)</label>
                 <select class="form-control select2 @error('subcategory_id') is-invalid @enderror" id="subcategory_id" name="subcategory_id" data-placeholder="Choose ...">
@@ -71,9 +71,9 @@
                 </span>
                 @enderror
               </div>
-            </div>
+            </div> -->
             <!-- col end -->
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <div class="form-group mb-3">
                 <label for="childcategory_id" class="form-label">Child Categories (Optional)</label>
                 <select class="form-control select2 @error('childcategory_id') is-invalid @enderror" id="childcategory_id" name="childcategory_id" data-placeholder="Choose ...">
@@ -87,10 +87,10 @@
                 </span>
                 @enderror
               </div>
-            </div>
+            </div> -->
             <!-- col end -->
 
-            <div class="col-sm-4">
+            <!-- <div class="col-sm-4">
               <div class="form-group mb-3">
                 <label for="category_id" class="form-label">Brands</label>
                 <select class="form-control select2 @error('brand_id') is-invalid @enderror" value="{{ old('brand_id') }}" name="brand_id">
@@ -105,19 +105,19 @@
                 </span>
                 @enderror
               </div>
-            </div>
+            </div> -->
             <!-- col end -->
-            <div class="col-sm-4">
+            <!-- <div class="col-sm-4">
               <div class="form-group mb-3">
                 <label for="purchase_price" class="form-label">Purchase Price *</label>
-                <input type="text" class="form-control @error('purchase_price') is-invalid @enderror" name="purchase_price" value="{{ old('purchase_price') }}" id="purchase_price" required />
+                <input type="text" class="form-control @error('purchase_price') is-invalid @enderror" name="purchase_price" value="{{ old('purchase_price') }}" id="purchase_price"  />
                 @error('purchase_price')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
                 </span>
                 @enderror
               </div>
-            </div>
+            </div> -->
             <!-- col-end -->
             <!-- col-end -->
             <div class="col-sm-4">
@@ -146,7 +146,7 @@
             <!-- col-end -->
             <div class="col-sm-4">
               <div class="form-group mb-3">
-                <label for="stock" class="form-label">Stock *</label>
+                <label for="stock" class="form-label">Duration *</label>
                 <input type="text" class="form-control @error('stock') is-invalid @enderror" name="stock" value="{{ old('stock') }}" id="stock" />
                 @error('stock')
                 <span class="invalid-feedback" role="alert">
@@ -182,7 +182,7 @@
             <!-- col end -->
             <div class="col-sm-6">
               <div class="form-group mb-3">
-                <label for="pro_unit" class="form-label">Product Unit (Optional)</label>
+                <label for="pro_unit" class="form-label">Teacher Name</label>
                 <input type="text" class="form-control @error('pro_unit') is-invalid @enderror" name="pro_unit" value="{{ old('pro_unit') }}" id="pro_unit" />
                 @error('pro_unit')
                 <span class="invalid-feedback" role="alert">
@@ -203,7 +203,7 @@
               </div>
             </div>
 
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <div class="form-group mb-3">
                 <label for="roles" class="form-label">Size (Option)</label>
                 <select class="form-control select2" name="proSize[]" multiple="multiple">
@@ -218,9 +218,9 @@
                 </span>
                 @enderror
               </div>
-            </div>
+            </div> -->
              <!--col end -->
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <div class="form-group mb-3">
                 <label for="color" class="form-label">Color (Optional)</label>
                 <select class="form-control select2" name="proColor[]" multiple="multiple">
@@ -235,7 +235,7 @@
                 </span>
                 @enderror
               </div>
-            </div>
+            </div> -->
              <!--col end -->
             <div class="col-sm-12 mb-3">
               <div class="form-group">
@@ -251,7 +251,7 @@
                <!--col end -->
             <div class="col-sm-12 mb-3">
               <div class="form-group">
-                <label for="note" class="form-label">Note </label>
+                <label for="note" class="form-label">Hover Note </label>
                 <textarea name="note" rows="6" class=" form-control @error('note') is-invalid @enderror" ></textarea>
                 @error('note')
                 <span class="invalid-feedback" role="alert">
@@ -263,7 +263,7 @@
             <!-- col end -->
             <div class="col-sm-3 mb-3">
               <div class="form-group mb-3">
-                <label for="sold" class="form-label">Sold</label>
+                <label for="sold" class="form-label">Time</label>
                 <input type="text" class="form-control @error('sold') is-invalid @enderror" name="sold" value="{{ old('sold') }}" id="sold" />
                 @error('sold')
                 <span class="invalid-feedback" role="alert">
@@ -272,18 +272,19 @@
                 @enderror
               </div>
             </div>
-            <!-- col end -->
             <div class="col-sm-3 mb-3">
               <div class="form-group mb-3">
-                <label for="pdf" class="form-label">PDF</label>
-                <input type="file" class="form-control @error('pdf') is-invalid @enderror" name="pdf" value="{{ old('pdf') }}" id="pdf" />
-                @error('pdf')
+                <label for="location" class="form-label">Location</label>
+                <input type="text" class="form-control @error('location') is-invalid @enderror" name="location" value="{{ old('location') }}" id="location" />
+                @error('location')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
                 </span>
                 @enderror
               </div>
             </div>
+            <!-- col end -->
+           
             <!-- col end -->
             <div class="col-sm-3 mb-3">
               <div class="form-group">
